@@ -1,7 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
+# slash / is for current folder and w/o slash is for all the folders
+node_modules
 /.pnp
 .pnp.js
 
