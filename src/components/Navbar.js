@@ -26,7 +26,7 @@ const Navbar = () => {
                         <ul className="navbar-nav flex justify-between items-center md:w-[900px] mb-2 mb-lg-0">
                             <div className='md:flex pr-96'>
                                 <li className="nav-item">
-                                    <Link className={`nav-link  ${location.pathname === "/home" ? "active" : ""}`} aria-current="page" to="/home">Home</Link>
+                                    <Link className={`nav-link  ${location.pathname === "/" ? "active" : ""}`} aria-current="page" to="/home">Home</Link>
                                 </li>
                                 <li className="nav-item">
                                     <Link className={`nav-link  ${location.pathname === "/about" ? "active" : ""}`} to="/about">About</Link>

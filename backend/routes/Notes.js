@@ -22,7 +22,7 @@ router.get("/fetchallnotes", fetchuser, async (req, res) => {
 
 //!Route 2: Add a new note using: POST "/api/notes/addnote". Login required
 router.post("/addnote", fetchuser, [
-    body("description", "Description must have a minimum of 5 characters").isLength({ min: 5 }),
+
 ], async (req, res) => {
     try {
         const { title, description, tag } = req.body;
@@ -51,9 +51,7 @@ router.patch("/updatenote/:id", fetchuser, async (req, res) => {
         const { title, description, tag } = req.body;
         //Creating a new note
         const newnote = {};
-        if (title) { newnote.title = title }
-        if (description) { newnote.description = description }
-        if (tag) { newnote.tag = tag }
+        if (title) { newnote.title = title, newnote.description = description,newnote.tag = tag  }
 
         //Find the note to be updated and update it
         let note = await Notes.findById(req.params.id);
