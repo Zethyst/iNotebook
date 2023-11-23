@@ -1,6 +1,626 @@
+@import url("https://fonts.googleapis.com/css? family Montserrat:400, 800");
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&subset=devanagari,latin-ext");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap");
+
 /* Add this style to your CSS */
 button:disabled {
   opacity: 0.5; /* or any other styling for a disabled button */
   cursor: not-allowed;
   /* Add any other styles you want for a disabled button */
+}
+.gold-plate {
+  height: 45px;
+  padding: 5px;
+  font-size: 15px;
+  border-radius: 20px;
+  border: solid 1px transparent;
+  background-image: linear-gradient(white, white),
+    linear-gradient(
+      90deg,
+      rgba(196, 163, 80, 255) 0%,
+      rgba(246, 228, 128, 1) 35%,
+      rgb(242, 235, 160) 60%,
+      rgba(196, 163, 80, 255) 100%
+    );
+  background-origin: border-box;
+  cursor: pointer;
+}
+.gold-plate:focus {
+  background-clip: content-box, border-box;
+  border: none;
+  outline: none;
+  box-shadow: none; /* Remove the box shadow on focus */
+}
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(-1rem);
+  }
+  50% {
+    transform: translateY(1rem);
+  }
+}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background: white;
+  /* box-shadow: 0 10px 30px 0 rgba(138, 155, 165, 0.15); */
+  font-family: "Montserrat", sans-serif;
+
+  height: 100vh;
+
+  /* margin: -20px 0 50px; */
+}
+::-webkit-scrollbar {
+  width: 0.3rem;
+  height: 0.3rem;
+}
+
+::-webkit-scrollbar-track {
+  background: #dddddd;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(62deg, #AE8625 0%, #F7E58A 75%, #D2AC47 100%);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b30000;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&subset=devanagari,latin-ext");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;700&display=swap");
+
+/* #Primary
+================================================== */
+
+body {
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+  color: #212112;
+  /* background-color: rgb(226 232 240); */
+  overflow-x: hidden;
+  transition: all 200ms linear;
+}
+/* ::selection {
+  color: #fff;
+  background-color: rgb(251, 200, 91);
+}
+::-moz-selection {
+  color: #fff;
+  background-color: rgb(251, 200, 91);
+} */
+
+/* #Navigation
+================================================== */
+
+.start-header {
+  opacity: 1;
+  transform: translateY(0);
+  padding: 20px 0;
+  /* box-shadow: 0 10px 30px 0 rgba(138, 155, 165, 0.15); */
+  -webkit-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+.start-header.scroll-on {
+  /* box-shadow: 0 5px 10px 0 rgba(138, 155, 165, 0.15); */
+  padding: 10px 0;
+  -webkit-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+}
+.navigation-wrap {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  -webkit-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out;
+  /* text-transform: uppercase; */
+}
+.navbar {
+  padding: 0;
+  transform: translateX(-40px);
+}
+.navbar-toggler {
+  float: right;
+  border: none;
+  padding-right: 0;
+}
+.navbar-toggler:active,
+.navbar-toggler:focus {
+  outline: none;
+  box-shadow: 0 0 0 0;
+}
+.navbar-light .navbar-toggler-icon {
+  width: 24px;
+  height: 17px;
+  background-image: none;
+  position: relative;
+  border-bottom: 1.4px solid #000;
+  transition: all 300ms linear;
+}
+
+.navbar-light .navbar-toggler-icon:after,
+.navbar-light .navbar-toggler-icon:before {
+  width: 24px;
+  position: absolute;
+  height: 1px;
+  background-color: #000;
+  top: 0;
+  left: 0;
+  content: "";
+  z-index: 2;
+  transition: all 300ms linear;
+}
+.navbar-light .navbar-toggler-icon:after {
+  top: 8px;
+}
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:after {
+  transform: rotate(45deg);
+}
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon:before {
+  transform: translateY(8px) rotate(-45deg);
+}
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+  border-color: transparent;
+}
+.btn-no-outline:focus,
+.btn-no-outline:active {
+  outline: none !important;
+  border: none !important;
+}
+.nav-link {
+  transform: translateY(2px);
+  font-size: 15px;
+  color: #161616 !important;
+  font-weight: 500;
+  transition: all 200ms linear;
+}
+/* .nav-item:hover .nav-link{
+	color: rgba(255, 212, 116, 1) !important;
+} */
+.nav-item.active .nav-link {
+  color: #777 !important;
+}
+.navbar-brand {
+  position: relative;
+}
+.navbar-brand:hover {
+  color: rgb(249, 199, 91) !important;
+}
+
+.navbar-brand:hover .navbar-brand span {
+  color: black !important;
+}
+
+.navbar-brand span {
+  color: initial;
+}
+.category:hover{
+  color: rgb(249, 199, 91) !important;
+}
+.category:hover .category p {
+  color: black !important;
+}
+
+.category p {
+  color: initial;
+}
+
+.navbar-brand:active {
+  top: 2px;
+  left: 1px;
+}
+.nav-link {
+  position: relative;
+  padding: 5px 0 !important;
+  display: inline-block;
+}
+.nav-item:after {
+  position: absolute;
+  bottom: -5px;
+  left: 2px;
+  width: 121%;
+  height: 2px;
+  content: "";
+  background-color: rgba(255, 212, 116, 1);
+  opacity: 0;
+  transition: all 200ms linear;
+  outline: none;
+}
+.nav-item:hover:after {
+  bottom: 0;
+  opacity: 1;
+}
+.nav-item.active:hover:after {
+  opacity: 0;
+}
+.nav-item {
+  position: relative;
+  transition: all 200ms linear;
+}
+
+/* #Primary style
+================================================== */
+
+.bg-light {
+  background-color: #fff !important;
+  transition: all 200ms linear;
+}
+.section {
+  position: relative;
+  width: 100%;
+  display: block;
+}
+.full-height {
+  height: 100vh;
+}
+.over-hide {
+  overflow: hidden;
+}
+.absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+  margin-top: 40px;
+  transform: translateY(-50%);
+  z-index: 20;
+}
+
+#switch,
+#circle {
+  cursor: pointer;
+  -webkit-transition: all 300ms linear;
+  transition: all 300ms linear;
+}
+
+body.hero-anime #switch {
+  opacity: 0;
+  transform: translateY(40px);
+  transition-delay: 1900ms;
+}
+
+.nav-item .dropdown-menu {
+  transform: translate3d(0, 10px, 0);
+  visibility: hidden;
+  opacity: 0;
+  max-height: 0;
+  display: block;
+  padding: 0;
+  margin: 0;
+  transition: all 200ms linear;
+}
+
+
+
+.wrapper {
+  font-family: "Roboto", Arial, sans-serif;
+  width: 14rem;
+  max-width: 41.25rem;
+  /* margin: 0rem auto; */
+}
+
+@media screen and (max-width: 750px) {
+  .wrapper {
+    margin-top: 20px;
+    transform: translateX(-10px);
+  }
+  .navbar-brand {
+    transform: translateX(10px);
+  }
+  .navbar-toggler {
+    transform: translateX(-10px);
+  }
+}
+
+.searchBar {
+  width: 22rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#searchQueryInput {
+  width: 100%;
+  height: 2.8rem;
+  background: #f5f5f5;
+  outline: none;
+  border: none;
+  border-radius: 1.625rem;
+  padding: 0 3.5rem 0 1.5rem;
+  font-size: 1rem;
+}
+
+#searchQuerySubmit {
+  width: 3.5rem;
+  height: 2.8rem;
+  margin-left: -3.5rem;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+#searchQuerySubmit:hover {
+  cursor: pointer;
+}
+
+/* #Media
+================================================== */
+
+@media (max-width: 767px) {
+  h1 {
+    font-size: 38px;
+  }
+  .nav-item:after {
+    display: none;
+  }
+  .nav-item::before {
+    position: absolute;
+    display: block;
+    top: 15px;
+    left: 0;
+    width: 11px;
+    height: 1px;
+    content: "";
+    border: none;
+    background-color: #000;
+    vertical-align: 0;
+  }
+
+  body.dark .nav-item::before {
+    background-color: #fff;
+  }
+}
+@media screen and (max-width: 400px) {
+  .navbar {
+    transform: translateX(20);
+  }
+}
+
+.Logincontainer h1 {
+  font-weight: 800;
+  margin: 0;
+}
+
+.Logincontainer h2 {
+  text-align: center;
+}
+
+.Logincontainer p {
+  font-size: 14px;
+  /* font-weight: 100; */
+  line-height: 20px;
+  letter-spacing: 0.5px;
+  margin: 20px 30px;
+}
+.Logincontainer span {
+  font-size: 12px;
+}
+
+.Logincontainer a {
+  /* color: #333; */
+
+  font-size: 14px;
+
+  text-decoration: none;
+
+  margin: 15px 0;
+}
+
+.Logincontainer button {
+  border-radius: 20px;
+  border: 1px solid #ff4828;
+  background-color: #ff482b;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 12px 45px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+button:focus {
+  outline: none;
+}
+
+button.ghost {
+  background-color: transparent;
+  border: 2px solid;
+  border-color: #ffffff;
+}
+button.ghost:hover {
+  background-color: #ffffff;
+  color: #ff416c;
+}
+.Logincontainer form {
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.form-container input {
+  padding: 0 50px;
+  height: 100%;
+  /* text-align: center; */
+  background-color: #eee;
+  border: none;
+  padding: 12px 15px;
+  margin: 8px 0;
+  width: 100%;
+}
+.Logincontainer {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.15), 0 7px 10px rgba(0, 0, 0, 0.22);
+  position: relative;
+  overflow: hidden;
+  width: 768px;
+  max-width: 100%;
+  min-height: 480px;
+}
+.form-container {
+  padding: 50px;
+  position: absolute;
+  top: 0;
+  height: 100%;
+  transition: all 0.6s ease-in-out;
+}
+.sign-in-container {
+  left: 0;
+  width: 50%;
+  z-index: 2;
+}
+.Logincontainer.right-panel-active .sign-in-container {
+  transform: translateX(100%);
+}
+.sign-up-container {
+  left: 0;
+  width: 50%;
+  opacity: 0;
+  z-index: 1;
+}
+.Logincontainer.right-panel-active .sign-up-container {
+  transform: translateX(100%);
+  opacity: 1;
+  z-index: 5;
+  animation: show 0s;
+}
+@keyframes show {
+  0%,
+  49.99% {
+    opacity: 0;
+    z-index: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 1;
+    z-index: 5;
+  }
+}
+.overlay-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  transition: transform 0.6s ease-in-out;
+  z-index: 100;
+}
+.Logincontainer.right-panel-active .overlay-container {
+  transform: translateX(-100%);
+}
+.overlay {
+  background: #ff416c;
+  background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
+  background: linear-gradient(to right, #ff4b2b, #ff416c);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 0 0;
+  color: #ffffff;
+  position: relative;
+  left: -100%;
+  height: 100%;
+  width: 200%;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+.Logincontainer.right-panel-active .overlay {
+  transform: translateX(50%);
+}
+.overlay-panel {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 40px;
+  text-align: center;
+  top: 0;
+  height: 100%;
+  width: 50%;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+}
+.overlay-left {
+  transform: translateX(0%);
+}
+.Logincontainer .right-panel-active .overlay-left {
+  transform: translateX(0);
+}
+.overlay-right {
+  right: 0;
+  transform: translateX(0);
+}
+.Logincontainer .right-panel-active .overlay-right {
+  transform: translateX(20%);
+}
+
+.social-container {
+  margin: 20px 0;
+}
+.social-container a {
+  border: 1px solid #dddddd;
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 5px;
+  height: 40px;
+  width: 40px;
+}
+
+.button {
+  position: relative;
+  height: 50px;
+  /* width: 15%; */
+  border-radius: 25px;
+  overflow: hidden;
+  transform: translate(325px);
+}
+
+.button .button-layer {
+  position: absolute;
+  height: 100%;
+  width: 300%;
+  left: -110%;
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 212, 116, 1),
+    rgb(250, 239, 207),
+    rgba(255, 212, 116, 1),
+    rgba(255, 252, 244, 1)
+  );
+  transition: all 0.5s ease;
+  /* border-radius: 15px; */
+}
+
+.button:hover .button-layer {
+  left: 0;
+}
+
+.button button {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background: none;
+  outline: none;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: "Montserrat", sans-serif;
+  cursor: pointer;
 }

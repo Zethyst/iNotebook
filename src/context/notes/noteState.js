@@ -4,10 +4,10 @@ import { json } from 'react-router-dom';
 
 const NoteState = (props) => {
     let host = "http://127.0.0.1:5000";
-    let s1 = {
-        "name": "Akshat",
-        "class": "10B"
-    }
+    // let s1 = {
+    //     "name": "Akshat",
+    //     "class": "10B"
+    // }
     // const [state, setState] = useState(s1);
     // const update = () => {
     //     setTimeout(() => {
@@ -17,6 +17,7 @@ const NoteState = (props) => {
     //         })
     //     }, 3000)
     // }
+    
     const [notes, setNotes] = useState([]);
 
     //!Get all notes
@@ -27,7 +28,7 @@ const NoteState = (props) => {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
-                    "Auth-Token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUzYmM1YTYxYjA1MmE5NzA2MGU4YWYyIn0sImlhdCI6MTY5ODQxODQ3M30.e-pJAzEh0BGbmaQ5B057gsoowIvo_E3wlqfdqer8d6j2TbmeSEKJr6UhTwZN1lPlI3dousoDvJAbwC3wWuqLfNUWrb28qBQPOiIflWXEPzYMOiM1Iszo2T_s4rc9oTO9RhbyieOAfNs9NYiudQm0qGTICpLfFtkTEEE6r0II2lT8qvi5oG4VASEeKWeU6JECZteb6z1IMlX6wYD6jG9LrW9D0SaROGQDwYS6BmidebmZaypp8O2Hl1fdlmPCcTrSRI-mc5Q1rD_RyFRXHBz4iYOeoJOuFHVqFEb6NiZIlb_mhRnZwBH_ElUVua9T_UrqZoKFltyjffO9sDm9KUxU8A"
+                    "Auth-Token": localStorage.getItem("token")
                 },
             });
             const json = await response.json();
@@ -46,11 +47,11 @@ const NoteState = (props) => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Auth-Token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUzYmM1YTYxYjA1MmE5NzA2MGU4YWYyIn0sImlhdCI6MTY5ODQxODQ3M30.e-pJAzEh0BGbmaQ5B057gsoowIvo_E3wlqfdqer8d6j2TbmeSEKJr6UhTwZN1lPlI3dousoDvJAbwC3wWuqLfNUWrb28qBQPOiIflWXEPzYMOiM1Iszo2T_s4rc9oTO9RhbyieOAfNs9NYiudQm0qGTICpLfFtkTEEE6r0II2lT8qvi5oG4VASEeKWeU6JECZteb6z1IMlX6wYD6jG9LrW9D0SaROGQDwYS6BmidebmZaypp8O2Hl1fdlmPCcTrSRI-mc5Q1rD_RyFRXHBz4iYOeoJOuFHVqFEb6NiZIlb_mhRnZwBH_ElUVua9T_UrqZoKFltyjffO9sDm9KUxU8A"
+                "Auth-Token": localStorage.getItem("token")
             },
             body: JSON.stringify({ title, description, tag })
         });
-        
+
         let note = await response.json();
         setNotes(notes.concat(note)); //concat returns an array, push updates an array
     }
@@ -62,7 +63,7 @@ const NoteState = (props) => {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
-                    "Auth-Token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUzYmM1YTYxYjA1MmE5NzA2MGU4YWYyIn0sImlhdCI6MTY5ODQxODQ3M30.e-pJAzEh0BGbmaQ5B057gsoowIvo_E3wlqfdqer8d6j2TbmeSEKJr6UhTwZN1lPlI3dousoDvJAbwC3wWuqLfNUWrb28qBQPOiIflWXEPzYMOiM1Iszo2T_s4rc9oTO9RhbyieOAfNs9NYiudQm0qGTICpLfFtkTEEE6r0II2lT8qvi5oG4VASEeKWeU6JECZteb6z1IMlX6wYD6jG9LrW9D0SaROGQDwYS6BmidebmZaypp8O2Hl1fdlmPCcTrSRI-mc5Q1rD_RyFRXHBz4iYOeoJOuFHVqFEb6NiZIlb_mhRnZwBH_ElUVua9T_UrqZoKFltyjffO9sDm9KUxU8A"
+                    "Auth-Token": localStorage.getItem("token")
                 }
             });
             const json = await response.json();
@@ -85,7 +86,7 @@ const NoteState = (props) => {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json",
-                    "Auth-Token": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjUzYmM1YTYxYjA1MmE5NzA2MGU4YWYyIn0sImlhdCI6MTY5ODQxODQ3M30.e-pJAzEh0BGbmaQ5B057gsoowIvo_E3wlqfdqer8d6j2TbmeSEKJr6UhTwZN1lPlI3dousoDvJAbwC3wWuqLfNUWrb28qBQPOiIflWXEPzYMOiM1Iszo2T_s4rc9oTO9RhbyieOAfNs9NYiudQm0qGTICpLfFtkTEEE6r0II2lT8qvi5oG4VASEeKWeU6JECZteb6z1IMlX6wYD6jG9LrW9D0SaROGQDwYS6BmidebmZaypp8O2Hl1fdlmPCcTrSRI-mc5Q1rD_RyFRXHBz4iYOeoJOuFHVqFEb6NiZIlb_mhRnZwBH_ElUVua9T_UrqZoKFltyjffO9sDm9KUxU8A"
+                    "Auth-Token": localStorage.getItem("token")
                 },
                 body: JSON.stringify({ title, description, tag })
             });

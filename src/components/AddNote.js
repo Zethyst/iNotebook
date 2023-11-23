@@ -20,8 +20,8 @@ const AddNote = (props) => {
         setNote({ ...note, [e.target.name]: e.target.value })//spread operator to ensure jo bhi values pehle se hain voh rahe aur new values update hojaye eg: [description]:some new value
     }
     return (
-        <div className='container mt-4'>
-            <form action=''>
+        <div className='container mt-12'>
+            <form action='' className='rounded-2xl p-7 '>
                 <h1 className='my-3 font-sans font-bold text-2xl'>Add a Note</h1>
                 <div className="mb-3">
                     <label htmlFor="title" className="form-label">Title</label>

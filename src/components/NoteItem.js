@@ -1,10 +1,22 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useRef } from 'react'
 import noteContext from '../context/notes/noteContext'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar as regularStar } from '@fortawesome/free-regular-svg-icons';
+import { faStar as solidStar } from '@fortawesome/free-solid-svg-icons';
 
 const NoteItem = (props) => {
     const { note } = props;
     const context = useContext(noteContext);
     const { deleteNote } = context;
+
+    // Convert the ISO date string to a Date object
+    const formattedDate = new Date(note.date).toLocaleDateString('en-GB');
+
+    const [isStarHovered, setIsStarHovered] = useState(false);
+    const [isEditHovered, setIsEditHovered] = useState(false);
+    const [isDeleteHovered, setIsDeleteHovered] = useState(false);
+    const [goldMode, setGoldMode] = useState(false);
+
 
     /*Difference between _id and id:
 
@@ -14,18 +26,32 @@ const NoteItem = (props) => {
 
     return (
         <>
-            <div className="relative mx-8 my-6 rounded-2xl flex flex-col justify-center items-center w-64 transition-all duration-500 ease-out hover:scale-105 bg-slate-200" style={{ height: "170px" }}>
+            <div className={`relative mx-8 my-6 rounded-2xl flex flex-col justify-center items-center w-96 transition-all duration-500 ease-out hover:scale-105 ${goldMode ? "bg-[linear-gradient(180deg,#ffd467,#ffe6a9)]" : "bg-[#f5f5f5d2]"}`} style={{ height: "170px" }}>
                 <span className="absolute -top-3 left-1/2 transform -translate-x-1/2  badge rounded-pill bg-danger">{note.tag}</span>
-                <div className="flex flex-col my-2 w-48">
-                    <p className="font-sans text-xl text-center leading-6 font-semibold paragraph-ellipsis">{note.title}</p>
-                    <p className="font-sans text-stone-700 text-sm my-3 text-center w-54 h-8 paragraph-ellipsis-description">{note.description ? note.description : "No Description..."}</p>
+                <header>
+                    <div className='flex gap-2'>
+                        {/* {Note that: if you put delete note direct inside of onclick instead of in arrow funtion it will run automatically on re-render!} And use preventDefault() to stop page reloading when clicking delete button*/}
+                        <i onClick={(e) => { e.preventDefault(); props.updateNote(note) }} onMouseEnter={() => setIsEditHovered(true)}
+                            onMouseLeave={() => setIsEditHovered(false)} className={`fa-solid fa-pen-to-square absolute right-14 top-4 cursor-pointer text-${isEditHovered ? "[#01ce01]" : ""}  ${goldMode ? "text-white" : "text-slate-500"}`}></i>
+                        <i onClick={(e) => { e.preventDefault(); deleteNote(note._id) }} onMouseEnter={() => setIsDeleteHovered(true)}
+                        onMouseLeave={() => setIsDeleteHovered(false)} className={`fa-solid fa-trash absolute right-24 top-4 cursor-pointer text-${isDeleteHovered ? "[red]" : ""} ${goldMode ? "text-white" : "text-slate-500"}`}></i>
+                    </div>
+                    <FontAwesomeIcon
+                        icon={(isStarHovered || goldMode) ? solidStar : regularStar}
+                        className={`absolute right-4 top-4 cursor-pointer ${goldMode ? "text-white" : "text-[#F59E0B]"}`}
+                        onClick={() => setGoldMode((prevGoldMode) => !prevGoldMode)}
+                        onMouseEnter={() => setIsStarHovered(true)}
+                        onMouseLeave={() => setIsStarHovered(false)}
+                    />
+                </header>
+
+                <div className={`flex flex-col my-2 w-72 `}>
+                    <p className="font-sans text-xl text-start leading-6 font-bold paragraph-ellipsis">{note.title}</p>
+                    <p className={`font-sans text-stone-500 font-medium text-sm my-3 text-start w-54 h-8 paragraph-ellipsis-description`}>{note.description ? note.description : "No Description..."}</p>
                     {/* <p className='font-sans text-center text-xs my-1 w-48 h-5'><small style={{ color: 'grey' }}>Published At {d.toDateString()}, {d.toLocaleTimeString()}</small></p> */}
                 </div>
-                <div className='flex gap-2'>
-                    {/* {Note that: if you put delete note direct inside of onclick instead of in arrow funtion it will run automatically on re-render!} And use preventDefault() to stop page reloading when clicking delete button*/}
-                    <a href="/" target='_blank' rel="noreferrer"><button className="bg-purple-700 hover:bg-purple-900 rounded-md font-semibold text-white h-8 w-24" onClick={(e)=>{e.preventDefault(); props.updateNote(note)}}><i className="fa-solid fa-pen-to-square"></i> Edit</button></a>
-                    <a href="/" target='_blank' rel="noreferrer"><button className="bg-purple-700 hover:bg-purple-900 rounded-md font-semibold text-white h-8 w-24" onClick={(e) => { e.preventDefault(); deleteNote(note._id) }}><i className="fa-solid fa-trash"></i> Delete</button></a>
-                </div>
+
+                <footer><p className='absolute right-6 text-sm text-slate-400'>{formattedDate}</p></footer>
             </div>
         </>
     );
