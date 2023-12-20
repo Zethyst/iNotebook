@@ -34,8 +34,8 @@ const Notes = (props) => {
     if (searchKeyword !=='') {
             filteredNotes = notes.filter(
             (note) =>
-              note.title.toLowerCase().includes(searchKeyword.toLowerCase()) ||
-              note.description.toLowerCase().includes(searchKeyword.toLowerCase())
+              note?.title.toLowerCase().includes(searchKeyword.toLowerCase()) ||
+              note?.description.toLowerCase().includes(searchKeyword.toLowerCase())
           ); 
     }
 
@@ -77,15 +77,15 @@ const Notes = (props) => {
                             <div className="modal-body">
                                 <div className="mb-3">
                                     <label htmlFor="etitle" className="form-label font-medium">Title</label>
-                                    <input type="text" className="form-control outline-none gold-plate" id="etitle" name='etitle' style={{ fontFamily: "'Poppins',sans-serif" }} value={note.etitle} minLength={3} required placeholder='Enter a captivating title...' onChange={handleChange} />
+                                    <input type="text" className="form-control outline-none indent-4 gold-plate" id="etitle" name='etitle' style={{ fontFamily: "'Poppins',sans-serif" }} value={note.etitle} minLength={3} required placeholder='Enter a captivating title...' onChange={handleChange} />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="edescription" className="form-label font-medium">Description</label>
-                                    <input type="text" className="form-control outline-none gold-plate" id="edescription" name="edescription" style={{ fontFamily: "'Poppins',sans-serif" }} value={note.edescription} placeholder='Share the details of your note...' onChange={handleChange} />
+                                    <input type="text" className="form-control outline-none indent-4 gold-plate" id="edescription" name="edescription" style={{ fontFamily: "'Poppins',sans-serif" }} value={note.edescription} placeholder='Share the details of your note...' onChange={handleChange} />
                                 </div>
                                 <div className="mb-3">
                                     <label htmlFor="etag" className="form-label font-medium">Tag</label>
-                                    <input type="text" className="form-control outline-none gold-plate" id="etag" name="etag" style={{ fontFamily: "'Poppins',sans-serif" }} value={note.etag} placeholder='Label your note with a tag...' onChange={handleChange} />
+                                    <input type="text" className="form-control outline-none indent-4 gold-plate" id="etag" name="etag" style={{ fontFamily: "'Poppins',sans-serif" }} value={note.etag} placeholder='Label your note with a tag...' onChange={handleChange} />
                                 </div>
                             </div>
                             <div className="modal-footer border-none pt-0 pb-3">
@@ -97,8 +97,8 @@ const Notes = (props) => {
                 </div>
             </div>
 
-            <div className='container text-center '>
-                {(filteredNotes.length === 0 || !localStorage.getItem('token')) ? (
+            <div className=' text-center '>
+                {(filteredNotes.length===0 || !localStorage.getItem('token')) ? (
                     <>
                         <p className="my-3 font-sans font-bold text-2xl">Your Notes</p>
                         <i className="fa-solid fa-ghost my-12" style={{ animation: "float 4s linear infinite", scale: "2.3" }}></i>
@@ -124,11 +124,11 @@ const Notes = (props) => {
                     <div className='container'>
                         <h1 className=' mb-3 font-sans -translate-x-24 font-bold text-3xl'>Notes</h1>
                         <div className="flex flex-col max-h-[450px]" >
-                            <div className="w-[24rem] md:w-[28rem] column " style={{ overflowY: "scroll", overflowX: "clip" }}>
+                            <div className="w-[28rem] md:w-[28rem] column " style={{ overflowY: "scroll", overflowX: "clip" }}>
                                 {/* <div key="conditional-message" className='container text-center'>
                                     {notes.length === 0 && "Oops! Your notebook is feeling a bit lonely. Time to add some notes and fill it with your ideas!"}
                                 </div> */}
-                                {filteredNotes.map((note) => (
+                                {filteredNotes?.map((note) => (
                                     <div className="col-md-4" key={note._id}>
                                         <NoteItem updateNote={updateNote} note={note} />
                                     </div>

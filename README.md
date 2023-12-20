@@ -1,6 +1,9 @@
-<h1 align="center">iNoteBook - Your Notebook on the cloud [Ongoing]</h1>
+<h1 align="center">iNoteBook - Your Notebook on the cloud</h1>
 
-<p>iNoteBook is a the secure cloud-based note storage solution. Safeguard your notes and access them anytime, anywhere. Organize effortlessly with our user-friendly interface. Start your journey with iNotebook today!"</p>
+<p>
+**# Never miss a thought again!  **
+
+Introducing iNoteBook – a beautifully crafted web app designed to keep your notes organized, secure, and accessible from anywhere. iNoteBook is a secure cloud-based note storage solution. Organize effortlessly with our user-friendly interface. Start your journey with iNotebook today!"</p>
 
 <!-- [Visit Now]() 🚀 -->
 ### `npm start`
@@ -9,7 +12,11 @@ Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 The page will reload when you make changes.\
-You may also see any lint errors in the console.
+You may also see any errors in the console.
+
+Simultaneously run the backend on another terminal by going inside the /backend directory and running
+### `node index.js`
+You may also see any errors in the console.
 
 ## 🖥️ Tech Stack
 **Frontend:**
@@ -23,30 +30,41 @@ You may also see any lint errors in the console.
 
 ![nodejs](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)&nbsp;
 ![expressjs](https://img.shields.io/badge/Express.js-F7DF1E?style=for-the-badge&logo=express&logoColor=black)&nbsp;
+![axios](https://img.shields.io/badge/Axios-20232A?style=for-the-badge&logo=axios&logoColor=61DAFB)&nbsp;
 ![mongodb](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)&nbsp;
 
 
 
-<!-- ## 📌 Key Features:
+## 📌 Key Features:
 <dl>
-<dt>Explore Various News Categories:</dt><dd> Explore a diverse range of news categories, including General, Business, Entertainment, Health, Science, Sports, and Technology.</dd>
+<dt>Sleek and intuitive UI that makes note-taking a breeze</dd>
 
-<dt>Instant Search Functionality:</dt><dd> Quickly find articles on any topic with real-time search, ensuring you stay updated with the latest news that matters to you.</dd>
+<dt>Complete CRUD functionality to create, read, update, and delete notes effortlessly</dt>
 
-<dt>User-Friendly Navigation:</dt><dd> Navigate effortlessly through the app using an intuitive and collapsible menu, optimized for mobile devices.</dd>
+<dt>Cloud-based storage powered by MongoDB Atlas for seamless access across devices</dt>
 
-<dt>Responsive Design:</dt><dd> Enjoy a seamless viewing experience across different devices, as NewsRadar's responsive design adapts to both desktop and mobile screens.</dd>
+<dt>Robust security features:</dt>
+<dd> Password protection with forgot and reset password options</dd>
+<dd> Email verification with OTP for added account security during the registration process.</dd>
+<dd> Thorough credentials validation on both frontend and backend ️</dd>
 </dl>
-<dt>Modern Web Technologies:</dt><dd> Built using cutting-edge web technologies such as React, Tailwind and React Router, ensuring a modern and feature-rich application.</dd>
+<dt> Note Categories: </dt><dd> Organize your notes efficiently by selecting categories for better categorization.</dd>
 </dl>
-<dt>Stay Up-to-Date Easily:</dt><dd> Stay informed without hassle using NewsRadar's user-friendly interface, providing you with the latest news updates at your fingertips.</dd>
-</dl> -->
+<dt>Note Search: </dt><dd> Quickly find specific notes using the search functionality for a streamlined user experience.</dd>
+</dl>
 
 ## 📌 Screenshots:
 ![home](/img/Empty.png)
 ![add](/img/addnote.png)
 ![notes](/img/notes.png)
 ![login](/img/Login.png)
+![OTP](/img/OTP.png)
+![OTPEmail](/img/OTPEmail.png)
+![ForgotPassword](/img/ForgotPassword.png)
+![ForgotPasswordEmail](/img/ForgotPasswordEmail.png)
+![ResetPassword](/img/ResetPassword.png)
+![ResetPasswordSuccessful](/img/ResetPasswordSuccessful.png)
+![about](/img/About.png)
 
 
 <h2>📬 Contact</h2>

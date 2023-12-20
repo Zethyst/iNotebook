@@ -46,6 +46,7 @@ router.post("/addnote", fetchuser, [
 //!Route 3: Update an existing note using: PATCH "/api/notes/updatenote". Using patch cuz we need to update only specific parts not the whole body
 //? using fetchuser here so that only the current logged in user can update his note and not someone's elses
 
+//:id is used for just for api purpose but : isn't really included but _id is mongoDB special id for each document
 router.patch("/updatenote/:id", fetchuser, async (req, res) => {
     try {
         const { title, description, tag } = req.body;

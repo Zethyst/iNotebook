@@ -1,21 +1,50 @@
 import React, { useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link,useNavigate } from 'react-router-dom';
+import BarLoader from "./BarLoader";
+import ErrorMessage from './ErrorMessage';
 
 const Login = (props) => {
     const ref = useRef(null);
+    const [busy, setBusy] = useState(false);
+    const [isNameEmpty, setIsNameEmpty] = useState(false);
+    const [isEmailEmpty, setIsEmailEmpty] = useState(false);
+    const [isNameFocused, setNameFocus] = useState(false);
+    const [isPWDEmpty, setIsPWDEmpty] = useState(false);
+    const [isPWDFocused, setPWDFocus] = useState(false);
     let navigate = useNavigate(); //New version of useHistory
-    const [credentials, setCredentials] = useState({ name: "", email: "", password: "" });
+    // const [credentials, setcredentials] = useState({ name: "", email: "", password: "" });
 
-    const handleSignInChange = (e) => {
-        setCredentials({ ...credentials, [e.target.name]: e.target.value });
-    }
-
-    const handleSignUpChange = (e) => {
-        setCredentials({ ...credentials, [e.target.name]: e.target.value });
-    }
     const handleChange = (e)=>{
-        setCredentials({ ...credentials, [e.target.name]: e.target.value });
+        props.setCredentials({ ...props.credentials, [e.target.name]: e.target.value });
+        if (e.target.name === 'name') {
+            setIsNameEmpty(e.target.value.trim() === '')
+        }
+        if (e.target.name === 'email') {
+            setIsEmailEmpty(e.target.value.trim() === '')
+        }
+        if (e.target.name === 'password') {
+            setIsPWDEmpty(e.target.value.trim() === '')
+        }
     }
+    const handleBlur = (e) => {
+        // Check if the input is empty on blur and update the class
+        if (e.target.name === 'name') {
+            setIsNameEmpty(e.target.value.trim() === '')
+            setNameFocus(false);
+        }
+        if (e.target.name === 'password') {
+            setIsPWDEmpty(e.target.value.trim() === '')
+            setPWDFocus(false);
+        }
+      };
+      const handleFocus = (e) => {
+        if (e.target.name === 'name') {
+            setNameFocus(true);
+        }
+        if (e.target.name === 'password') {
+            setPWDFocus(true);
+        }
+      };
 
     const handleSignInOverlayClick = () => {
         ref.current.classList.remove('right-panel-active');
@@ -27,12 +56,13 @@ const Login = (props) => {
     const handleSignInClick = async (e) => {
         e.preventDefault();
         try {
+            setBusy(true);
             const response = await fetch("http://127.0.0.1:5000/api/auth/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({email: credentials.email, password: credentials.password })
+                body: JSON.stringify({email: props.credentials.email, password: props.credentials.password })
             });
             const json = await response.json();
             // console.log(json)
@@ -45,8 +75,10 @@ const Login = (props) => {
             else {
                 props.showAlert(json.error, "danger");
             }
+            setBusy(false);
         }
         catch (error) {
+            setBusy(false);
             props.showAlert("Error Occured", "danger");
             console.error('Error fetching notes:', error);
         }
@@ -54,33 +86,37 @@ const Login = (props) => {
     const handleSignUpClick = async (e) => {
         e.preventDefault();
         try {
-            console.log(credentials.name)
+            // console.log(props.credentials.name)
+            setBusy(true);
             const response = await fetch("http://127.0.0.1:5000/api/auth/createuser", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({name:credentials.name, email: credentials.email, password: credentials.password })
+                body: JSON.stringify({name:props.credentials.name, email: props.credentials.email, password: props.credentials.password })
             });
             const json = await response.json();
-            console.log(json)
+            props.setID(json.ID);
+            // console.log(json)
             if (json.success) {
                 //!Redirect
                 localStorage.setItem('token', json.authtoken);
                 props.showAlert("Congratulations! You've successfully created your account.", "success");
-                navigate("/");
+                navigate("/verify-email");
             }
             else {
                 props.showAlert(json.error, "danger");
             }
+            setBusy(false);
         }
         catch (error) {
+            setBusy(false);
             console.error('Error fetching notes:', error);
         }
     }
     return (
-        <div className='flex justify-center items-center py-3 '>
-            <div className="Logincontainer " ref={ref} id="container">
+        <div className='flex justify-center items-center py-2 '>
+            <div className="Logincontainer" ref={ref} id="container">
 
                 <div className="form-container sign-up-container">
 
@@ -97,11 +133,16 @@ const Login = (props) => {
 
                         <span className='font-medium text-slate-500'>or use your email for registration</span>
 
-                        <input type="text" name="name" value={credentials.name} onChange={handleChange} minLength={5} required placeholder="Name" />
-                        <input type="email" name='email' value={credentials.email} onChange={handleChange} required placeholder="Email" />
-                        <input type="password" name='password' value={credentials.password} onChange={handleChange} minLength={5} required placeholder="Password" />
+                        <input className={`${isNameEmpty && props.credentials.name.length < 3 ? 'invalidInput' : ''} loginInputExtended rounded-lg`} type="text" name="name" value={props.credentials.name} onChange={handleChange} onBlur={handleBlur} onFocus={handleFocus} minLength={5} required placeholder="Name" />
+                        {(isNameEmpty && !isNameFocused) || (props.credentials.name.length < 3 && isNameFocused) && (
+                            <ErrorMessage msg='Name must be greater than 3 characters long!' />)}
+                        <input className={`${isEmailEmpty ? 'invalidInput' : ''} loginInputExtended rounded-lg`} type="email" name='email' value={props.credentials.email} onChange={handleChange} onBlur={handleBlur} required placeholder="Email" />
+                        <input className={`${isPWDEmpty && props.credentials.password.length < 5 ? 'invalidInput' : ''} loginInputExtended rounded-lg`} type="password" name='password' value={props.credentials.password} onChange={handleChange} onBlur={handleBlur} onFocus={handleFocus} minLength={5} required placeholder="Password" />
+                        {(isPWDEmpty && !isPWDFocused) || (props.credentials.password.length < 5 && isPWDFocused) && (
+                            <ErrorMessage msg='Password must be greater than 5 characters long!' />)}
+                        {busy && <BarLoader/>}
 
-                        <button disabled={credentials.name.length<5 || credentials.password.length<5} className='mt-3 hover:bg-[#ff2b2b]' onClick={handleSignUpClick}>Sign Up</button>
+                        <button disabled={ busy || (props.credentials.name.length<3 || props.credentials.password.length<5)} className='mt-3 hover:bg-[#ff2b2b]' onClick={handleSignUpClick}>Sign Up</button>
 
                     </form >
 
@@ -125,12 +166,13 @@ const Login = (props) => {
 
                         <span className='font-medium text-slate-500'> or use your account </span>
 
-                        <input type="email" name='email' value={credentials.email} onChange={handleChange} placeholder="Email" />
-                        <input type="password" name='password' value={credentials.password} onChange={handleChange} placeholder="Password" />
+                        <input className={`${isEmailEmpty ? 'invalidInput' : ''} loginInputExtended rounded-lg`} type="email" name='email' value={props.credentials.email} onChange={handleChange} onBlur={handleBlur} onFocus={handleFocus} placeholder="Email" />
+                        <input className={`${isPWDEmpty && props.credentials.password.length < 5 ? 'invalidInput' : ''} loginInputExtended rounded-lg`} type="password" name='password' value={props.credentials.password} onChange={handleChange} onBlur={handleBlur} onFocus={handleFocus} placeholder="Password" />
+                        {(isPWDEmpty && !isPWDFocused) || (props.credentials.password.length < 5 && isPWDFocused) && (
+                            <ErrorMessage msg='Password must be greater than 5 characters long!' />)}
+                        <Link to="/forgot-password" className='font-medium text-slate-500 hover:text-red-400'>Forgot your password?</Link>
 
-                        <a href="/" className='font-medium text-slate-500'>Forgot your password?</a>
-
-                        <button className='hover:bg-[#ff2b2b]' onClick={handleSignInClick}>Sign In</button>
+                        <button disabled={busy || (props.credentials.email.length<7 || props.credentials.password.length<5)} className='hover:bg-[#ff2b2b]' onClick={handleSignInClick}>Sign In</button>
 
                     </form >
 
@@ -146,7 +188,7 @@ const Login = (props) => {
 
                             <p className='font-medium'>Begin your note-taking journey by providing your personal details.</p>
 
-                            <button onClick={handleSignInOverlayClick} className="ghost" id="signIn">Sign In</button>
+                            <button onClick={handleSignInOverlayClick} className="ghost btn" id="signIn">Sign In</button>
 
                         </div >
 
@@ -156,7 +198,7 @@ const Login = (props) => {
 
                             <p>Log in with your information to access your valuable notes.</p>
 
-                            <button onClick={handleSignUpOverlayClick} className="ghost" id="signUp">Sign Up</button>
+                            <button onClick={handleSignUpOverlayClick} className="ghost btn" id="signUp">Sign Up</button>
 
                         </div >
 

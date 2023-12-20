@@ -8,26 +8,33 @@ import CategoryRoundedIcon from '@mui/icons-material/CategoryRounded';
 
 
 
-function Category() {
+function Category(props) {
 
+  // const ref=useRef(null);
   const category = useContext(categoryContext);
-  const { handleCategoryClick} = category;
+  const { selectedCategory, handleCategoryClick } = category;
+
+  // const handleSideBarClick = ()=>{
+  //   props.parentRef.current.classList.toggle("sidebar");
+  //   // props.handleSideBarClick();
+  // }
 
   return (
-    <>
-        <div className="p-4 bg-[white] h-[85vh]">
-        <h3 className='uppercase text-slate-400'>Categories</h3>
-        <ul className='ml-3 space-y-4 text-slate-800' style={{fontFamily:"'Source Sans', sans-serif"}}>
+    <div className='flex' ref={props.parentRef} style={{transition: "all .7s ease"}}>
+        <aside  className="p-4 -translate-y-1  opacity-100 bg-[white] h-[86vh] md:w-80  relative z-20" style={{  transition: "transform 0.9s ease",boxShadow: "10px 20px 45px -1px rgba(0, 0, 0, 0.1), 0px 4px 6px -4px rgba(0, 0, 0, 0.1)" }}>
+        <h3 className='uppercase text-slate-400 pb-3'>Categories</h3>
+        <ul className=' space-y-2  text-slate-800 text-xs md:text-base' style={{fontFamily:"'Source Sans', sans-serif"}}>
           <li></li>
-<li className='flex gap-3 cursor-pointer category' onClick={() => handleCategoryClick("All")}><CategoryRoundedIcon /> <p>All</p></li>
-<li className='flex gap-3 cursor-pointer category' onClick={() => handleCategoryClick("General")}><TextSnippetRoundedIcon /> <p>General</p></li>
-<li className='flex gap-3 cursor-pointer category' onClick={() => handleCategoryClick("Personal")}><FolderSharedRoundedIcon /> <p>Personal</p></li>
-<li className='flex gap-3 cursor-pointer category' onClick={() => handleCategoryClick("Student")}><SchoolRoundedIcon/> <p>Student</p></li>
-
+          <li className={` flex gap-3 cursor-pointer rounded-2xl category p-2 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-600 hover:text-gray-800 ${selectedCategory === "All" ? '' : ''}`} onClick={() => handleCategoryClick("All")}><CategoryRoundedIcon /> <p className=' '>All</p></li>
+          <li className={`flex gap-3 cursor-pointer rounded-2xl category p-2 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-600 hover:text-gray-800`} onClick={() => handleCategoryClick("General")}><TextSnippetRoundedIcon /> <p>General</p></li>
+          <li className={`flex gap-3 cursor-pointer rounded-2xl category p-2 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-600 hover:text-gray-800 `} onClick={() => handleCategoryClick("Personal")}><FolderSharedRoundedIcon /> <p>Personal</p></li>
+          <li className={`flex gap-3 cursor-pointer rounded-2xl category p-2 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-600 hover:text-gray-800 `} onClick={() => handleCategoryClick("Student")}><SchoolRoundedIcon /> <p>Student</p></li>
+        
         </ul>
         <div className='flex absolute bottom-8 cursor-pointer' style={{fontFamily:"'Source Sans', sans-serif"}}><AddCircleRoundedIcon/> <p className='ml-3'>Add Category</p></div>
-      </div>
-    </>
+      </aside>
+
+    </div>
   )
 }
 

@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import noteContext from './noteContext'
-import { json } from 'react-router-dom';
 
 const NoteState = (props) => {
     let host = "http://127.0.0.1:5000";
@@ -69,7 +68,7 @@ const NoteState = (props) => {
             const json = await response.json();
             console.log(json);
             const newNotes = notes.filter((note) => {
-                return note._id != id
+                return note._id !== id
             })
             setNotes(newNotes); //concat returns an array, push updates an array
         } catch (error) {
@@ -91,7 +90,7 @@ const NoteState = (props) => {
                 body: JSON.stringify({ title, description, tag })
             });
 
-            const json = await response.json();
+            await response.json();
             //Logic to edit the note in client
             let newNotes = JSON.parse(JSON.stringify(notes)); //Exact copy of notes, cuz original isn't updating
             for (let i = 0; i < newNotes.length; i++) {

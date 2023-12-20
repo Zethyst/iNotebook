@@ -8,6 +8,7 @@ const NoteItem = (props) => {
     const { note } = props;
     const context = useContext(noteContext);
     const { deleteNote } = context;
+    const ref= useRef(null);
 
     // Convert the ISO date string to a Date object
     const formattedDate = new Date(note.date).toLocaleDateString('en-GB');
@@ -17,23 +18,42 @@ const NoteItem = (props) => {
     const [isDeleteHovered, setIsDeleteHovered] = useState(false);
     const [goldMode, setGoldMode] = useState(false);
 
+    const getTagColorClass = (tag) => {
+        switch (tag) {
+          case 'Student':
+            return 'bg-blue-500 text-white';
+          case 'Personal':
+            return 'bg-green-500 text-white';
+          case 'General':
+            return 'bg-red-500 text-white';
+          default:
+            return 'bg-slate-500 text-white'; 
+        }
+      };
+
+    const handleDeletion = ()=>{
+        ref.current.classList.add("animate-ping");
+        ref.current.classList.add("opacity-30");
+    }
+
+    const tagColorClass = getTagColorClass(note.tag);
 
     /*Difference between _id and id:
 
-    id is the parameter which deleteNote is taking from Noteitem i.e the specific _id of the note on which delete is clicked
+    id is the parameter which deleteNote is taking from Noteitem i.e the specific _id of the note on which delete is clicked, mongodb gives it by default
 
     this is why in filter function we are saying that only keep those notes with _id which doesnt match with the id (the one that needs to be deleted) */
 
     return (
         <>
-            <div className={`relative mx-8 my-6 rounded-2xl flex flex-col justify-center items-center w-96 transition-all duration-500 ease-out hover:scale-105 ${goldMode ? "bg-[linear-gradient(180deg,#ffd467,#ffe6a9)]" : "bg-[#f5f5f5d2]"}`} style={{ height: "170px" }}>
-                <span className="absolute -top-3 left-1/2 transform -translate-x-1/2  badge rounded-pill bg-danger">{note.tag}</span>
+            <div ref={ref} className={`relative mx-8 my-6 rounded-2xl flex flex-col justify-center items-center w-96 transition-all duration-500 ease-out hover:scale-105 ${goldMode ? "bg-[linear-gradient(180deg,#ffd467,#ffe6a9)]" : "bg-[#f5f5f5d2]"}`} style={{ height: "170px" }}>
+            <span className={`absolute -top-3 left-1/2 transform -translate-x-1/2 badge rounded-pill ${tagColorClass}`}>{note.tag}</span>
                 <header>
                     <div className='flex gap-2'>
                         {/* {Note that: if you put delete note direct inside of onclick instead of in arrow funtion it will run automatically on re-render!} And use preventDefault() to stop page reloading when clicking delete button*/}
                         <i onClick={(e) => { e.preventDefault(); props.updateNote(note) }} onMouseEnter={() => setIsEditHovered(true)}
                             onMouseLeave={() => setIsEditHovered(false)} className={`fa-solid fa-pen-to-square absolute right-14 top-4 cursor-pointer text-${isEditHovered ? "[#01ce01]" : ""}  ${goldMode ? "text-white" : "text-slate-500"}`}></i>
-                        <i onClick={(e) => { e.preventDefault(); deleteNote(note._id) }} onMouseEnter={() => setIsDeleteHovered(true)}
+                        <i onClick={(e) => { e.preventDefault(); deleteNote(note._id); handleDeletion()}} onMouseEnter={() => setIsDeleteHovered(true)}
                         onMouseLeave={() => setIsDeleteHovered(false)} className={`fa-solid fa-trash absolute right-24 top-4 cursor-pointer text-${isDeleteHovered ? "[red]" : ""} ${goldMode ? "text-white" : "text-slate-500"}`}></i>
                     </div>
                     <FontAwesomeIcon

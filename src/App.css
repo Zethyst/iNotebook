@@ -8,6 +8,84 @@ button:disabled {
   cursor: not-allowed;
   /* Add any other styles you want for a disabled button */
 }
+.container {
+  width: 85% !important;
+}
+
+.gold-text{
+  background:  linear-gradient(62deg, #ae8625 0%, #f3df78 75%, #d2ac47 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+input::-ms-reveal {
+  display: block;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+
+.invalidInput {
+  background: #fdd8d8 !important;
+  border: 1px solid #f94545 !important;
+}
+.loginInputExtended:focus{
+  outline: 1px solid rgba(76, 76, 76, 0.963);
+}
+.loginInputExtended:hover {
+  outline: 1px solid rgba(76, 76, 76, 0.763);
+}
+
+.custom-input {
+  outline: 2px solid rgb(99, 98, 98);
+  transition-property: all;
+  transition-timing-function: ease-in;
+  transition-duration: 0.3s;
+  /* transition: transform 0.3s ease-in-out; */
+}
+
+.wrong-otp {
+  outline: 2px solid red !important;
+}
+.wrong-otp:focus {
+  outline: 2px solid red !important;
+}
+.correct-otp {
+  outline: 3px solid rgb(9, 176, 9) !important;
+}
+.correct-otp:focus {
+  outline: 3px solid rgb(9, 176, 9) !important;
+}
+
+.custom-input:focus {
+  outline: 3px solid black;
+}
+.btn:active {
+  top: 2px;
+  left: 1px;
+}
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.Shake {
+  animation: shake 0.5s;
+}
+
 .gold-plate {
   height: 45px;
   padding: 5px;
@@ -43,15 +121,15 @@ button:disabled {
 * {
   box-sizing: border-box;
 }
-
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
 body {
   background: white;
-  /* box-shadow: 0 10px 30px 0 rgba(138, 155, 165, 0.15); */
   font-family: "Montserrat", sans-serif;
-
   height: 100vh;
-
-  /* margin: -20px 0 50px; */
 }
 ::-webkit-scrollbar {
   width: 0.3rem;
@@ -63,11 +141,11 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(62deg, #AE8625 0%, #F7E58A 75%, #D2AC47 100%);
+  background: linear-gradient(62deg, #ae8625 0%, #f7e58a 75%, #d2ac47 100%);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #b30000;
+  background: #ae8625;
 }
 
 @import url("https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&subset=devanagari,latin-ext");
@@ -201,16 +279,6 @@ body {
 .navbar-brand span {
   color: initial;
 }
-.category:hover{
-  color: rgb(249, 199, 91) !important;
-}
-.category:hover .category p {
-  color: black !important;
-}
-
-.category p {
-  color: initial;
-}
 
 .navbar-brand:active {
   top: 2px;
@@ -297,8 +365,6 @@ body.hero-anime #switch {
   transition: all 200ms linear;
 }
 
-
-
 .wrapper {
   font-family: "Roboto", Arial, sans-serif;
   width: 14rem;
@@ -309,13 +375,23 @@ body.hero-anime #switch {
 @media screen and (max-width: 750px) {
   .wrapper {
     margin-top: 20px;
-    transform: translateX(-10px);
+    /* transform: translateX(-40px); */
   }
   .navbar-brand {
     transform: translateX(10px);
   }
   .navbar-toggler {
-    transform: translateX(-10px);
+    /* transform: translateX(-10px); */
+  }
+  .button {
+    transform: translate(0) !important;
+    width: 35% !important;
+  }
+  .navbar {
+    transform: translate(0) !important;
+  }
+  .nav-link {
+    transform: translate(0) !important;
   }
 }
 
@@ -468,7 +544,7 @@ button.ghost:hover {
   overflow: hidden;
   width: 768px;
   max-width: 100%;
-  min-height: 480px;
+  min-height: 490px;
 }
 .form-container {
   padding: 50px;
@@ -623,4 +699,8 @@ button.ghost:hover {
   font-weight: 600;
   font-family: "Montserrat", sans-serif;
   cursor: pointer;
+}
+
+.sidebar {
+  transform: translateX(-180px);
 }
