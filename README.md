@@ -37,19 +37,24 @@ You may also see any errors in the console.
 
 ## 📌 Key Features:
 <dl>
-<dt>Sleek and intuitive UI that makes note-taking a breeze</dd>
+<dt>🎨 Intuitive UI: </dt><dd> Enjoy a visually appealing and sleek user-interface that makes note-taking a breeze</dd>
 
-<dt>Complete CRUD functionality to create, read, update, and delete notes effortlessly</dt>
+<dt>🔄 CRUD Operations: </dt><dd> Complete CRUD functionality to create, read, update, and delete notes effortlessly</dd>
 
-<dt>Cloud-based storage powered by MongoDB Atlas for seamless access across devices</dt>
+<dt>☁️ Cloud Storage: </dt><dd> Cloud-based storage powered by MongoDB Atlas for seamless access across devices</dd>
 
-<dt>Robust security features:</dt>
-<dd> Password protection with forgot and reset password options</dd>
+<dt>🔑 Password Management: </dt>
+<dd> Implement a Forgot Password feature for account recovery, and securely reset passwords.</dd>
+
+<dt>📬 Email Verification: </dt>
 <dd> Email verification with OTP for added account security during the registration process.</dd>
-<dd> Thorough credentials validation on both frontend and backend ️</dd>
 
-<dt> Note Categories: </dt><dd> Organize your notes efficiently by selecting categories for better categorization.</dd>
-<dt>Note Search: </dt><dd> Quickly find specific notes using the search functionality for a streamlined user experience.</dd>
+<dt>🗂 Note Categories: </dt><dd> Organize your thoughts efficiently by selecting categories for better categorization.</dd>
+
+<dt>🔍 Note Search: </dt><dd> Quickly locate specific notes using the search functionality, saving you valuable time.</dd>
+
+<dt>🔒 Credentials Validation:</dt>
+<dd> Thorough credentials validation on both frontend and backend ️</dd>
 </dl>
 
 ## 📌 Screenshots:
