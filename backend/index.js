@@ -23,10 +23,6 @@ connectToMongo();
 //   res.send(userAgentInfo);
 //   });
 
-app.get("/", (req,res)=>{
-    res.send("Hello Harshu");
-})
-
 app.use('/api/auth', require("./routes/Auth"));
 app.use('/api/notes', require("./routes/Notes"));
 

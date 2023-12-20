@@ -57,7 +57,7 @@ const Login = (props) => {
         e.preventDefault();
         try {
             setBusy(true);
-            const response = await fetch("http://127.0.0.1:5000/api/auth/login", {
+            const response = await fetch("https://iNoteBook-api.onrender.com/api/auth/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -88,7 +88,7 @@ const Login = (props) => {
         try {
             // console.log(props.credentials.name)
             setBusy(true);
-            const response = await fetch("http://127.0.0.1:5000/api/auth/createuser", {
+            const response = await fetch("https://iNoteBook-api.onrender.com/api/auth/createuser", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

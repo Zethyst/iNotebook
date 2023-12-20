@@ -15,6 +15,7 @@ The page will reload when you make changes.\
 You may also see any errors in the console.
 
 Simultaneously run the backend on another terminal by going inside the /backend directory and running
+### `npm install`
 ### `node index.js`
 You may also see any errors in the console.
 
