@@ -47,7 +47,7 @@ You may also see any errors in the console.
 <dd> Password protection with forgot and reset password options</dd>
 <dd> Email verification with OTP for added account security during the registration process.</dd>
 <dd> Thorough credentials validation on both frontend and backend ️</dd>
-</dl>
+
 <dt> Note Categories: </dt><dd> Organize your notes efficiently by selecting categories for better categorization.</dd>
 </dl>
 <dt>Note Search: </dt><dd> Quickly find specific notes using the search functionality for a streamlined user experience.</dd>
