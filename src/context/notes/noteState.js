@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import noteContext from './noteContext'
 
 const NoteState = (props) => {
-    let host = "https://iNoteBook-api.onrender.com";
+    let host = "https://inotebook-backend-platinum.onrender.com";
     // let s1 = {
     //     "name": "Akshat",
     //     "class": "10B"

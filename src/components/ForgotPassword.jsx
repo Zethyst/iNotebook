@@ -4,7 +4,7 @@ import Spinner from './Spinner';
 import LockPersonRoundedIcon from '@mui/icons-material/LockPersonRounded';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 
-const baseURL = "https://iNoteBook-api.onrender.com/api/auth";
+const baseURL = "https://inotebook-backend-platinum.onrender.com/api/auth";
 // const baseURL = "http://localhost:5000/api/auth";
 
 export default function ForgotPassword(props) {

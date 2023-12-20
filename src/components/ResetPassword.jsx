@@ -6,7 +6,7 @@ import MailLockIcon from '@mui/icons-material/MailLock';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import VerifiedIcon from '@mui/icons-material/Verified';
 
-const baseURL = "https://iNoteBook-api.onrender.com/api/auth";
+const baseURL = "https://inotebook-backend-platinum.onrender.com/api/auth";
 export default function ResetPassword(props) {
   const location = useLocation(); //because location has the pathname (url) and search paramenter which has the query
   const navigate = useNavigate();

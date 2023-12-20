@@ -5,7 +5,7 @@ import BarLoader from "./BarLoader";
 
 const inputs = Array(4).fill(""); // create a blank array of 4 index
 let newInputIndex = 0;
-const baseURL = "https://iNoteBook-api.onrender.com/api/auth";
+const baseURL = "https://inotebook-backend-platinum.onrender.com/api/auth";
 
 export default function OTP(props) {
   const inputRef = useRef(null);
