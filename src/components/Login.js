@@ -88,7 +88,7 @@ const Login = (props) => {
         try {
             // console.log(props.credentials.name)
             setBusy(true);
-            const response = await fetch("hhttps://inotebook-backend-platinum.onrender.com/api/auth/createuser", {
+            const response = await fetch("https://inotebook-backend-platinum.onrender.com/api/auth/createuser", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
