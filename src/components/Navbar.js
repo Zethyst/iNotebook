@@ -72,7 +72,7 @@ const Navbar = (props) => {
                                     } transition-all duration-500 ease-in-out  md:max-h-screen md:!opacity-100`}>
                                     <ul className={`flex flex-col md:flex-row items-start md:space-x-4 py-4 py-md-0 translate-y-2 opacity-100 ${mobileView? isNavOpen?"":"hidden":""}`}>
                                         <li className={`nav-item text-center pl-4 md:-translate-x-10 pl-md-0 ml-0 ml-md-4  ${location.pathname === "/" ? "active" : ""}`}>
-                                            <Link className="nav-link  " activeclassname="active" data-toggle="dropdown" to="/" >HOME</Link>
+                                            <Link className="nav-link" activeclassname="active" data-toggle="dropdown" to="/" >HOME</Link>
                                         </li>
                                         <li className={`nav-item text-center pl-4 md:-translate-x-10 pl-md-0 ml-0 ml-md-4  ${location.pathname === "/about" ? "active" : ""}`} >
                                             <Link className="font-medium nav-link  text-gray-700 " to="/about">ABOUT</Link>

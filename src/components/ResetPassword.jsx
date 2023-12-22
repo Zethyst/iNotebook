@@ -87,7 +87,7 @@ export default function ResetPassword(props) {
         console.log(error);
       }
   }
-  if (!success) {
+  if (success) {
     return <>
        <div className="shadow-lg rounded-3xl max-w-screen-sm  w-[350px] md:w-[640px] m-auto pt-14 p-10 mt-4 flex space-y-10 flex-col justify-center items-center">
             <h1 className="my-3 uppercase font-extrabold text-3xl w-52 text-center" style={{fontFamily:"Poppins"}}>Password Updated</h1>

@@ -18,6 +18,12 @@ const NoteItem = (props) => {
     const [isDeleteHovered, setIsDeleteHovered] = useState(false);
     const [goldMode, setGoldMode] = useState(false);
 
+    function capitalize(word) {
+        word = (word ?? '').toLowerCase();
+        return word.charAt(0).toUpperCase() + word.slice(1);
+      }
+      
+
     const getTagColorClass = (tag) => {
         switch (tag) {
           case 'Student':
@@ -36,7 +42,7 @@ const NoteItem = (props) => {
         ref.current.classList.add("opacity-30");
     }
 
-    const tagColorClass = getTagColorClass(note.tag);
+    const tagColorClass = getTagColorClass(capitalize(note.tag));
 
     /*Difference between _id and id:
 
@@ -47,7 +53,7 @@ const NoteItem = (props) => {
     return (
         <>
             <div ref={ref} className={`relative mx-8 my-6 rounded-2xl flex flex-col justify-center items-center md:w-96 w-[19rem] transition-all duration-500 ease-out hover:scale-105 ${goldMode ? "bg-[linear-gradient(180deg,#ffd467,#ffe6a9)]" : "bg-[#f5f5f5d2]"}`} style={{ height: "170px" }}>
-            <span className={`absolute -top-3 left-1/2 transform -translate-x-1/2 badge rounded-pill ${tagColorClass}`}>{note.tag}</span>
+            <span className={`absolute -top-3 left-1/2 transform -translate-x-1/2 badge rounded-pill ${tagColorClass}`}>{capitalize(note.tag)}</span>
                 <header>
                     <div className='flex gap-2'>
                         {/* {Note that: if you put delete note direct inside of onclick instead of in arrow funtion it will run automatically on re-render!} And use preventDefault() to stop page reloading when clicking delete button*/}
@@ -67,11 +73,11 @@ const NoteItem = (props) => {
 
                 <div className={`flex flex-col my-2 w-72 px-3`}>
                     <p className="font-sans text-xl text-start leading-6 font-bold max-h-10 overflow-clip">{note.title}</p>
-                    <p className={`font-sans text-stone-500 font-medium text-sm mt-3 text-start w-54  max-h-20 overflow-auto`}>{note.description ? note.description : "No Description..."}</p>
+                    <p className={`font-sans text-stone-500 font-medium text-sm mt-3 text-start w-72  max-h-20 overflow-auto`}>{note.description ? note.description : "No Description..."}</p>
                     {/* <p className='font-sans text-center text-xs my-1 w-48 h-5'><small style={{ color: 'grey' }}>Published At {d.toDateString()}, {d.toLocaleTimeString()}</small></p> */}
                 </div>
 
-                <footer><p className='absolute right-6 text-sm -translate-y-1 text-slate-400'>{formattedDate}</p></footer>
+                <footer><p className='absolute right-6 text-sm -translate-y-1 text-slate-400 select-none'>{formattedDate}</p></footer>
             </div>
         </>
     );
