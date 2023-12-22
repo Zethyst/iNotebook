@@ -602,7 +602,7 @@ button.ghost:hover {
   animation: show 0s;
 }
 .Logincontainer-app.bottom-panel-active .sign-up-container-app {
-  transform: translateY(-100%);
+  transform: translateY(-120%);
   opacity: 1;
   z-index: 5;
   animation: show 0s;
