@@ -241,7 +241,7 @@ const Notes = (props) => {
             </h1>
             <div className="flex flex-col max-h-[450px]">
               <div
-                className={`${props.isSidebarOpen?"w-[13rem]":"w-[23rem]"} transition-all duration-500 ease-out md:w-[28rem] column -translate-x-7`}
+                className={`${props.isSidebarOpen?"w-[12rem]":"w-[22rem]"} transition-all duration-500 ease-out md:w-[28rem] column -translate-x-9`}
                 style={{ overflowY: "scroll", overflowX: "clip" }}
               >
                 {/* <div key="conditional-message" className='container text-center'>
@@ -264,7 +264,7 @@ const Notes = (props) => {
               }}
               data-bs-toggle="modal"
               data-bs-target="#addNoteModal"
-              className="rounded-full h-16 z-50 fixed right-14 bottom-9 w-16 flex justify-center items-center hover:scale-110 transition-all duration-150 cursor-pointer ease-linear"
+              className="rounded-full h-16 z-50 fixed right-14 md:bottom-9 bottom-14 w-16 flex justify-center items-center hover:scale-110 transition-all duration-150 cursor-pointer ease-linear"
             >
               <NoteAddRoundedIcon fontSize="large" className="ml-1 mb-1" />
             </div>
