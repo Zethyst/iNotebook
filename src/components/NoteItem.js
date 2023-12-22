@@ -46,7 +46,7 @@ const NoteItem = (props) => {
 
     return (
         <>
-            <div ref={ref} className={`relative mx-8 my-6 rounded-2xl flex flex-col justify-center items-center md:w-96 w-[22rem] transition-all duration-500 ease-out hover:scale-105 ${goldMode ? "bg-[linear-gradient(180deg,#ffd467,#ffe6a9)]" : "bg-[#f5f5f5d2]"}`} style={{ height: "170px" }}>
+            <div ref={ref} className={`relative mx-8 my-6 rounded-2xl flex flex-col justify-center items-center md:w-96 w-[21rem] transition-all duration-500 ease-out hover:scale-105 ${goldMode ? "bg-[linear-gradient(180deg,#ffd467,#ffe6a9)]" : "bg-[#f5f5f5d2]"}`} style={{ height: "170px" }}>
             <span className={`absolute -top-3 left-1/2 transform -translate-x-1/2 badge rounded-pill ${tagColorClass}`}>{note.tag}</span>
                 <header>
                     <div className='flex gap-2'>
