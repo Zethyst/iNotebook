@@ -32,6 +32,7 @@ const Notes = (props) => {
     if (windowWidth<= 768) {
       setMobileView(true);
     }
+    handleGetStarted();
   }, [])
 
   const ref = useRef(null);
@@ -72,7 +73,7 @@ const Notes = (props) => {
 
         } else {
           setLogged(true);
-        let t = props.openModal;
+          let t = props.openModal;
       }
     } catch (error) {
       console.log(error);
@@ -240,7 +241,7 @@ const Notes = (props) => {
             </h1>
             <div className="flex flex-col max-h-[450px]">
               <div
-                className="w-[28rem] md:w-[28rem] column "
+                className={`${props.isSidebarOpen?"w-[15rem]":"w-[25rem]"} transition-all duration-500 ease-out md:w-[28rem] column -translate-x-7`}
                 style={{ overflowY: "scroll", overflowX: "clip" }}
               >
                 {/* <div key="conditional-message" className='container text-center'>
