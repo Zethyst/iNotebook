@@ -61,7 +61,7 @@ You may also see any errors in the console.
 ## 📌 Screenshots:
 ![home](/img/Empty.png)
 ![add](/img/addnote.png)
-![notes](/img/notes.png)
+![notes](/img/Home.png)
 ![login](/img/Login.png)
 ![OTP](/img/OTP.png)
 ![OTPEmail](/img/OTPEmail.png)
