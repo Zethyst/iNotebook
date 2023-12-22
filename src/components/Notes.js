@@ -32,7 +32,6 @@ const Notes = (props) => {
     if (windowWidth<= 768) {
       setMobileView(true);
     }
-    handleGetStarted();
   }, [])
 
   const ref = useRef(null);
