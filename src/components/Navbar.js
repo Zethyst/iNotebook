@@ -70,7 +70,7 @@ const Navbar = (props) => {
 
                                 <div className={`md:flex ${isNavOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
                                     } transition-all duration-500 ease-in-out  md:max-h-screen md:!opacity-100`}>
-                                    <ul className={`flex flex-col md:flex-row items-start md:space-x-4 py-4 py-md-0 translate-y-2 opacity-100 ${isNavOpen?"":"hidden"}`}>
+                                    <ul className={`flex flex-col md:flex-row items-start md:space-x-4 py-4 py-md-0 translate-y-2 opacity-100 ${mobileView? isNavOpen?"":"hidden":""}`}>
                                         <li className={`nav-item text-center pl-4 md:-translate-x-10 pl-md-0 ml-0 ml-md-4  ${location.pathname === "/" ? "active" : ""}`}>
                                             <Link className="nav-link  " activeclassname="active" data-toggle="dropdown" to="/" >HOME</Link>
                                         </li>
@@ -92,10 +92,10 @@ const Navbar = (props) => {
                                     </ul>
                                 {!localStorage.getItem('token') ? <Link to={mobileView?`/login-app`:`/login`}>
 
-                                    <div className={`button ${isNavOpen?"":"hidden"}`}><div className="button-layer"></div>
+                                    <div className={`button ${mobileView? isNavOpen?"":"hidden":""}`}><div className="button-layer"></div>
                                     <button className='btn  text-center text-sm font-bold rounded-3xl  mr-10 h-12 w-32  text-slate-800' >Login / Register</button> </div></Link> :
                                    
-                                   <div className={`button ${isNavOpen?"":"hidden"}`}><div className="button-layer"></div>
+                                   <div className={`button ${mobileView? isNavOpen?"":"hidden":""}`}><div className="button-layer"></div>
                                         <button onClick={handleLogout} className='btn  text-center text-sm font-bold rounded-3xl  mr-10 h-12 w-24  text-slate-800' style={{ transform: "translate(0px)" }}>Sign Out</button>
                                     </div>
                                 }

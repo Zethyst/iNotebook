@@ -9,7 +9,7 @@ button:disabled {
   /* Add any other styles you want for a disabled button */
 }
 .container {
-  width: 85% !important;
+  width: 80% !important;
 }
 
 .gold-text{
@@ -137,10 +137,12 @@ body {
 }
 
 ::-webkit-scrollbar-track {
+  border-radius: 12px;
   background: #dddddd;
 }
 
 ::-webkit-scrollbar-thumb {
+  border-radius: 12px;
   background: linear-gradient(62deg, #ae8625 0%, #f7e58a 75%, #d2ac47 100%);
 }
 
