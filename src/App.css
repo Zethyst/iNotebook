@@ -385,7 +385,11 @@ body.hero-anime #switch {
   }
   .button {
     transform: translate(0) !important;
-    width: 35% !important;
+    width: 45% !important;
+  }
+  .button button{
+    font-size: 12px !important;
+    
   }
   .navbar {
     transform: translate(0) !important;
@@ -459,27 +463,27 @@ body.hero-anime #switch {
   }
 }
 
-.Logincontainer h1 {
+.Logincontainer h1, .Logincontainer-app h1 {
   font-weight: 800;
   margin: 0;
 }
 
-.Logincontainer h2 {
+.Logincontainer h2, .Logincontainer-app h2{
   text-align: center;
 }
 
-.Logincontainer p {
+.Logincontainer p{
   font-size: 14px;
   /* font-weight: 100; */
   line-height: 20px;
   letter-spacing: 0.5px;
   margin: 20px 30px;
 }
-.Logincontainer span {
+.Logincontainer span, .Logincontainer-app span{
   font-size: 12px;
 }
 
-.Logincontainer a {
+.Logincontainer a, .Logincontainer-app a{
   /* color: #333; */
 
   font-size: 14px;
@@ -489,7 +493,7 @@ body.hero-anime #switch {
   margin: 15px 0;
 }
 
-.Logincontainer button {
+.Logincontainer button,.form-container-app button{
   border-radius: 20px;
   border: 1px solid #ff4828;
   background-color: #ff482b;
@@ -519,14 +523,14 @@ button.ghost:hover {
   background-color: #ffffff;
   color: #ff416c;
 }
-.Logincontainer form {
+.Logincontainer form, .Logincontainer-app form {
   background-color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
 }
-.form-container input {
+.form-container input,.form-container-app input {
   padding: 0 50px;
   height: 100%;
   /* text-align: center; */
@@ -537,6 +541,8 @@ button.ghost:hover {
   width: 100%;
 }
 .Logincontainer {
+  display: flex !important ;
+  flex-direction: column !important;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 6px 28px rgba(0, 0, 0, 0.15), 0 7px 10px rgba(0, 0, 0, 0.22);
@@ -545,6 +551,8 @@ button.ghost:hover {
   width: 768px;
   max-width: 100%;
   min-height: 490px;
+  justify-content: center;
+  align-items: center;
 }
 .form-container {
   padding: 50px;
@@ -558,17 +566,43 @@ button.ghost:hover {
   width: 50%;
   z-index: 2;
 }
-.Logincontainer.right-panel-active .sign-in-container {
-  transform: translateX(100%);
-}
 .sign-up-container {
   left: 0;
   width: 50%;
   opacity: 0;
   z-index: 1;
 }
+.sign-in-container-app {
+  /* top: 6rem; */
+  margin-top: 145px;
+  width: 100%;
+  z-index: 1;
+  /* display: none; */
+  transform: translateY(-100%);
+}
+.sign-up-container-app {
+  top: 6rem;
+  width: 100%;
+  /* opacity: 0; */
+  z-index: 1;
+}
+.Logincontainer.right-panel-active .sign-in-container {
+  transform: translateX(100%);
+  
+}
 .Logincontainer.right-panel-active .sign-up-container {
   transform: translateX(100%);
+  opacity: 1;
+  z-index: 5;
+  animation: show 0s;
+}
+.Logincontainer-app.bottom-panel-active .sign-in-container-app {
+  transform: translateY(20%);
+  /* display: block; */
+  animation: show 0s;
+}
+.Logincontainer-app.bottom-panel-active .sign-up-container-app {
+  transform: translateY(-100%);
   opacity: 1;
   z-index: 5;
   animation: show 0s;
@@ -599,6 +633,9 @@ button.ghost:hover {
 .Logincontainer.right-panel-active .overlay-container {
   transform: translateX(-100%);
 }
+/* .Logincontainer-app.bottom-panel-active .overlay-container-app {
+  transform: translateY(100%);
+} */
 .overlay {
   background: #ff416c;
   background: -webkit-linear-gradient(to right, #ff4b2b, #ff416c);
@@ -617,6 +654,9 @@ button.ghost:hover {
 .Logincontainer.right-panel-active .overlay {
   transform: translateX(50%);
 }
+/* .Logincontainer-app.bottom-panel-active .overlay-app {
+  transform: translateY(50%);
+} */
 .overlay-panel {
   position: absolute;
   display: flex;
@@ -643,6 +683,19 @@ button.ghost:hover {
 }
 .Logincontainer .right-panel-active .overlay-right {
   transform: translateX(20%);
+}
+.overlay-bottom {
+  transform: translateY(0%);
+}
+.Logincontainer-app.bottom-panel-active .overlay-bottom {
+  transform: translateY(-200%);
+}
+.overlay-top {
+  /* bottom: 0; */
+  transform: translateY(0%);
+}
+.Logincontainer-app.bottom-panel-active .overlay-top {
+  transform: translateY(200%);
 }
 
 .social-container {
@@ -703,4 +756,10 @@ button.ghost:hover {
 
 .sidebar {
   transform: translateX(-180px);
+}
+
+@media screen and (max-width: 500px) {
+ .searchBar{
+  width: 19rem;
+ }
 }

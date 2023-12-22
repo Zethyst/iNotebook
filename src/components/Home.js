@@ -30,7 +30,7 @@ const Home = (props) => {
   const handleSideBarClick = () => {
     setIsSidebarOpen(!isSidebarOpen);
     setIsSidebar2Open(!isSidebar2Open);
-    ref.current.classList.toggle("sidebar");
+    // ref.current.classList.toggle("sidebar");
   };
 
   const sidebarWidth = isSidebarOpen ? '1/6' : '0';
@@ -49,7 +49,7 @@ const Home = (props) => {
       <div className="flex" style={{transition: "all .9s ease"}}>
         {/* 20% width for the Category component */}
           <div className={`md:w-${sidebarWidth} w-${sidebar2Width}`} style={{transition: "all .7s ease"}}>
-            <Category handleSideBarClick={handleSideBarClick} parentRef={ref}/>
+            <Category handleSideBarClick={handleSideBarClick} isSidebarOpen={isSidebarOpen} parentRef={ref}/>
           </div>
           <div  className='sidebtn relative translate-y-32 w-8 z-10 h-56 rounded-r-2xl cursor-pointer shadow-lg flex justify-center items-center ' onClick={handleSideBarClick} >
             <div className='h-10 w-1 rounded-lg bg-gray-600'></div>

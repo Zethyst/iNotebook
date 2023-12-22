@@ -153,7 +153,7 @@ export default function OTP(props) {
   }
 
   return (
-    <div className="overflow-hidden shadow-md rounded-3xl max-w-screen-sm w-96 m-auto mt-4 flex flex-col justify-center items-center">
+    <div className="overflow-hidden shadow-md rounded-3xl max-w-screen-sm w-80 md:w-96 m-auto mt-4 flex flex-col justify-center items-center">
       <div className="bg-[#ff4828] h-[50%] w-full p-10">
         <h1 className="font-semibold text-xl text-center text-white select-none">
           Verify Your E-mail Account!

@@ -87,9 +87,9 @@ export default function ResetPassword(props) {
         console.log(error);
       }
   }
-  if (success) {
+  if (!success) {
     return <>
-       <div className="shadow-lg rounded-3xl max-w-screen-sm m-auto pt-14 p-10 mt-4 flex space-y-10 flex-col justify-center items-center">
+       <div className="shadow-lg rounded-3xl max-w-screen-sm  w-[350px] md:w-[640px] m-auto pt-14 p-10 mt-4 flex space-y-10 flex-col justify-center items-center">
             <h1 className="my-3 uppercase font-extrabold text-3xl w-52 text-center" style={{fontFamily:"Poppins"}}>Password Updated</h1>
             <div className="text-center"><VerifiedIcon fontSize="large" style={{scale:"2.6"}}/></div>
             <p>Your password has been updated!</p>
@@ -112,11 +112,11 @@ export default function ResetPassword(props) {
         </div>
     </>
   }
-  return <div className="shadow rounded-3xl max-w-screen-sm m-auto pt-10 mt-1 flex flex-col justify-center items-center">
+  return <div className="shadow rounded-3xl max-w-screen-sm  w-[350px] md:w-[640px] md:gap-1 gap-2 m-auto pt-10 mt-1 flex flex-col justify-center items-center">
             <div className="text-center"><MailLockIcon fontSize="large" style={{scale:"1.6"}}/></div>
             <h1 className="my-3 uppercase font-extrabold text-3xl w-52 text-center" style={{fontFamily:"Poppins"}}>New Credentials</h1>
             <p>Your identity has been verified!</p>
-            <p>Set your new password!</p>
+            <p className="-translate-y-2">Set your new password!</p>
             <form onSubmit={handleSubmit} className="w-full rounded-lg p-10 pt-4">
                 {error && <p className="text-center p-2 mb-3 bg-red-500 text-white">{error}</p>}
             <div className="space-y-6">

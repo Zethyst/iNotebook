@@ -5,9 +5,20 @@ const Navbar = (props) => {
 
     const navigate = useNavigate();
     const location = useLocation();
+    const [mobileView, setMobileView] = useState(false);
+
     useEffect(() => {
         // console.log(location)
     }, [location])
+
+    const windowWidth = window.innerWidth;
+
+    //if mobile view then close category panel automatically
+    useEffect(() => {
+      if (windowWidth<= 768) {
+        setMobileView(true);
+      }
+    }, [])
 
     const [isNavOpen, setNavOpen] = useState(false);
     const [searchInput, setSearchInput] = useState('');
@@ -57,7 +68,7 @@ const Navbar = (props) => {
                                     </div>
                                 </nav>
 
-                                <div className={`md:flex ${isNavOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 '
+                                <div className={`md:flex ${isNavOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 hidden'
                                     } transition-all duration-300 ease-in-out  md:max-h-screen md:!opacity-100`}>
                                     <ul className="flex flex-col md:flex-row items-start md:space-x-4 py-4 py-md-0 translate-y-2 opacity-100">
                                         <li className={`nav-item text-center pl-4 md:-translate-x-10 pl-md-0 ml-0 ml-md-4  ${location.pathname === "/" ? "active" : ""}`}>
@@ -79,7 +90,7 @@ const Navbar = (props) => {
                                             </div>
                                         </div>
                                     </ul>
-                                {!localStorage.getItem('token') ? <Link to="/login">
+                                {!localStorage.getItem('token') ? <Link to={mobileView?`/login-app`:`/login`}>
 
                                     <div className="button" ><div className="button-layer"></div>
                                     <button className='btn  text-center text-sm font-bold rounded-3xl  mr-10 h-12 w-32  text-slate-800' >Login / Register</button> </div></Link> :

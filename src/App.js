@@ -19,6 +19,7 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import LoginMobile from './components/LoginMobile';
 
 
 function App() {
@@ -52,6 +53,7 @@ function App() {
               <Route exact path="/" element={<Home showAlert={showAlert} searchKeyword={searchQuery}/>} />
               <Route exact path="/about" element={<About />} />
               <Route exact path="/login" element={<Login setID={setID} showAlert={showAlert} credentials={credentials} setCredentials={setCredentials} />} />
+              <Route exact path="/login-app" element={<LoginMobile setID={setID} showAlert={showAlert} credentials={credentials} setCredentials={setCredentials} />} />
               <Route exact path="/forgot-password" element={<ForgotPassword showAlert={showAlert}/>} />
               <Route exact path="/reset-password" element={<ResetPassword showAlert={showAlert}/>} />
               <Route exact path="/verify-email" element={<OTP ID={ID} showAlert={showAlert} email={credentials.email}/>} />
