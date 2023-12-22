@@ -20,8 +20,8 @@ function Category(props) {
   // }
 
   return (
-    <div className='flex'  style={{transition: "all .7s ease"}}>
-        <aside  className={`p-4 ${!props.isSidebarOpen? "sidebar": ""} -translate-y-1  opacity-100 bg-[white] h-[135vh] md:h-[86vh] md:w-80  relative z-20`} style={{  transition: "transform 0.9s ease",boxShadow: "10px 20px 45px -1px rgba(0, 0, 0, 0.1), 0px 4px 6px -4px rgba(0, 0, 0, 0.1)" }}>
+    <div className={`flex ${!props.isSidebarOpen? "sidebar": ""}`}  style={{transition: "all .7s ease"}}>
+        <aside  className={`p-4  -translate-y-1  opacity-100 bg-[white] h-[135vh] md:h-[86vh] md:w-80  relative z-20`} style={{  transition: "transform 0.9s ease",boxShadow: "10px 20px 45px -1px rgba(0, 0, 0, 0.1), 0px 4px 6px -4px rgba(0, 0, 0, 0.1)" }}>
         <h3 className='uppercase text-slate-400 pb-3'>Categories</h3>
         <ul className=' space-y-2  text-slate-800 text-xs md:text-base' style={{fontFamily:"'Source Sans', sans-serif"}}>
           <li></li>
