@@ -31,7 +31,7 @@ function Category(props) {
           <li className={`flex gap-3 cursor-pointer rounded-2xl category p-2 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-600 hover:text-gray-800 `} onClick={() => handleCategoryClick("Student")}><SchoolRoundedIcon /> <p>Student</p></li>
         
         </ul>
-        <div className='flex absolute bottom-8 cursor-pointer' onClick={()=>{props.handleSideBarClick}} style={{fontFamily:"'Source Sans', sans-serif"}}><AddCircleRoundedIcon/> <p className='md:ml-3 ml-1 text-sm md:translate-y-0 translate-y-1 md:text-base' >Add Category</p></div>
+        <div className='flex absolute bottom-8 cursor-pointer' onClick={props.handleSideBarClick} style={{fontFamily:"'Source Sans', sans-serif"}}><AddCircleRoundedIcon/> <p className='md:ml-3 ml-1 text-sm md:translate-y-0 translate-y-1 md:text-base' >Add Category</p></div>
       </aside>
 
     </div>
