@@ -581,7 +581,7 @@ button.ghost:hover {
   transform: translateY(-100%);
 }
 .sign-up-container-app {
-  top: 6rem;
+  top: 16rem;
   width: 100%;
   /* opacity: 0; */
   z-index: 1;

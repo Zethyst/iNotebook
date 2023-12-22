@@ -161,7 +161,7 @@ function LoginMobile(props) {
 
                 </form >
             </div>
-            <div className='form-container-app sign-up-container-app p-12 relative top-1 mb-4 w-full h-full transition-transform duration-500 ease-in-out'>
+            <div className='form-container-app sign-up-container-app p-12 absolute  w-full h-[70%] transition-transform duration-500 ease-in-out'>
               <form action="/">
                <h1 className='text-4xl font-semibold  text-center'>Create Account</h1>
 
