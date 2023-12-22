@@ -55,9 +55,10 @@ const Notes = (props) => {
   if (searchKeyword !== "") {
     filteredNotes = notes.filter(
       (note) =>
-        note?.title.toLowerCase().includes(searchKeyword.toLowerCase()) ||
-        note?.description.toLowerCase().includes(searchKeyword.toLowerCase())
+        (note?.title && note.title.toLowerCase().includes(searchKeyword.toLowerCase())) ||
+        (note?.description && note.description.toLowerCase().includes(searchKeyword.toLowerCase()))
     );
+    
   }
 
   const handleClick = (e) => {
