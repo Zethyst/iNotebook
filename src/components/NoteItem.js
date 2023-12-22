@@ -46,7 +46,7 @@ const NoteItem = (props) => {
 
     return (
         <>
-            <div ref={ref} className={`relative mx-8 my-6 rounded-2xl flex flex-col justify-center items-center md:w-96 w-[21rem] transition-all duration-500 ease-out hover:scale-105 ${goldMode ? "bg-[linear-gradient(180deg,#ffd467,#ffe6a9)]" : "bg-[#f5f5f5d2]"}`} style={{ height: "170px" }}>
+            <div ref={ref} className={`relative mx-8 my-6 rounded-2xl flex flex-col justify-center items-center md:w-96 w-[20rem] transition-all duration-500 ease-out hover:scale-105 ${goldMode ? "bg-[linear-gradient(180deg,#ffd467,#ffe6a9)]" : "bg-[#f5f5f5d2]"}`} style={{ height: "170px" }}>
             <span className={`absolute -top-3 left-1/2 transform -translate-x-1/2 badge rounded-pill ${tagColorClass}`}>{note.tag}</span>
                 <header>
                     <div className='flex gap-2'>
@@ -65,7 +65,7 @@ const NoteItem = (props) => {
                     />
                 </header>
 
-                <div className={`flex flex-col my-2 w-72 px-0`}>
+                <div className={`flex flex-col my-2 w-72 px-2`}>
                     <p className="font-sans text-xl text-start leading-6 font-bold max-h-10 overflow-clip">{note.title}</p>
                     <p className={`font-sans text-stone-500 font-medium text-sm mt-3 text-start w-54  max-h-20 overflow-auto`}>{note.description ? note.description : "No Description..."}</p>
                     {/* <p className='font-sans text-center text-xs my-1 w-48 h-5'><small style={{ color: 'grey' }}>Published At {d.toDateString()}, {d.toLocaleTimeString()}</small></p> */}
