@@ -32,6 +32,12 @@ const NoteItem = (props) => {
             return 'bg-green-500 text-white';
           case 'General':
             return 'bg-red-500 text-white';
+          case 'Business':
+            return 'bg-amber-500 text-white';
+          case 'Quote':
+            return 'bg-purple-500 text-white';
+          case 'My target':
+            return 'bg-cyan-500 text-white';
           default:
             return 'bg-slate-500 text-white'; 
         }
@@ -72,7 +78,7 @@ const NoteItem = (props) => {
                 </header>
 
                 <div className={`flex flex-col my-2 w-72 px-3`}>
-                    <p className="font-sans text-xl text-start leading-6 font-bold max-h-10 overflow-clip">{note.title}</p>
+                    <p className="font-sans text-xl text-start leading-6 font-bold max-h-12 overflow-clip">{note.title}</p>
                     <p className={`font-sans text-stone-500 font-medium text-sm mt-3 text-start w-64  max-h-20 overflow-auto`}>{note.description ? note.description : "No Description..."}</p>
                     {/* <p className='font-sans text-center text-xs my-1 w-48 h-5'><small style={{ color: 'grey' }}>Published At {d.toDateString()}, {d.toLocaleTimeString()}</small></p> */}
                 </div>
