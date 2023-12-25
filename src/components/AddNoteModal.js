@@ -1,10 +1,18 @@
 import React, { useContext, useState } from 'react';
 import noteContext from '../context/notes/noteContext';
+import { useDispatch } from "react-redux";
+import { showMessage } from "../store/reducers/notificationSlice";
 
-const AddNoteModal = ({ closeModal, showAlert }) => {
+const AddNoteModal = ({ closeModal }) => {
+    
     const context = useContext(noteContext);
     const { addNote } = context;
     const [note, setNote] = useState({ title: '', description: '', tag: '' });
+    const dispatch = useDispatch();
+
+    const handleNotify = (msg) => {
+      dispatch(showMessage({ message: `${msg}`, messageType: 'success' }));
+    };
 
     const handleClick = (e) => {
         e.preventDefault();
@@ -13,7 +21,8 @@ const AddNoteModal = ({ closeModal, showAlert }) => {
         }
         addNote(note.title, note.description, note.tag);
         setNote({ title: '', description: '', tag: '' });
-        showAlert('Your thoughts have been saved', 'success');
+
+        handleNotify("Your thoughts have been saved");
         closeModal();
     };
 

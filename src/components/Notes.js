@@ -4,6 +4,8 @@ import categoryContext from "../context/categories/categoryContext";
 import NoteItem from "./NoteItem";
 import { useNavigate } from "react-router-dom";
 import NoteAddRoundedIcon from "@mui/icons-material/NoteAddRounded";
+import { useDispatch } from "react-redux";
+import { showMessage } from "../store/reducers/notificationSlice";
 
 const Notes = (props) => {
   const context = useContext(noteContext);
@@ -11,6 +13,11 @@ const Notes = (props) => {
   const [mobileView, setMobileView] = useState(false);
   const category = useContext(categoryContext);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const handleNotify = (msg) => {
+    dispatch(showMessage({ message: `${msg}`, messageType: 'success' }));
+  };
 
   const { searchKeyword } = props;
   const { notes, getNotes, editNote } = context;
@@ -63,7 +70,8 @@ const Notes = (props) => {
   const handleClick = (e) => {
     e.preventDefault();
     editNote(note.id, note.etitle, note.edescription, note.etag);
-    props.showAlert("Your edits have been applied", "success");
+    handleNotify("Your edits have been applied");
+
   };
 
   const handleGetStarted = () => {

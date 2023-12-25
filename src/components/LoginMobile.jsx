@@ -2,6 +2,8 @@ import React, { useRef, useState } from 'react'
 import { Link,useNavigate } from 'react-router-dom';
 import BarLoader from "./BarLoader";
 import ErrorMessage from './ErrorMessage';
+import { useDispatch } from "react-redux";
+import { showMessage } from "../store/reducers/notificationSlice";
 
 function LoginMobile(props) {
 
@@ -12,6 +14,7 @@ function LoginMobile(props) {
     const [isNameFocused, setNameFocus] = useState(false);
     const [isPWDEmpty, setIsPWDEmpty] = useState(false);
     const [isPWDFocused, setPWDFocus] = useState(false);
+    const dispatch = useDispatch();
     let navigate = useNavigate(); //New version of useHistory
     // const [credentials, setcredentials] = useState({ name: "", email: "", password: "" });
 
@@ -69,17 +72,17 @@ function LoginMobile(props) {
             if (json.success) {
                 //!Redirect
                 localStorage.setItem('token', json.authtoken);
-                props.showAlert("Login successful!", "success");
+                dispatch(showMessage({ message: `Welcome! Login successful`, messageType: 'success' }));
                 navigate("/");
             }
             else {
-                props.showAlert(json.error, "danger");
+                dispatch(showMessage({ message: json.error, messageType: 'error' }));
             }
             setBusy(false);
         }
         catch (error) {
             setBusy(false);
-            props.showAlert("Error Occured", "danger");
+            dispatch(showMessage({ message: `Login failed: ${error}`, messageType: 'error' }));
             console.error('Error fetching notes:', error);
         }
     }
@@ -101,16 +104,17 @@ function LoginMobile(props) {
             if (json.success) {
                 //!Redirect
                 localStorage.setItem('token', json.authtoken);
-                props.showAlert("Congratulations! You've successfully created your account.", "success");
+                dispatch(showMessage({ message: "Congratulations! You've successfully created your account", messageType: 'success' }));
                 navigate("/verify-email");
             }
             else {
-                props.showAlert(json.error, "danger");
+                dispatch(showMessage({ message: json.error, messageType: 'error' }));
             }
             setBusy(false);
         }
         catch (error) {
             setBusy(false);
+            dispatch(showMessage({ message: `Error Occured: ${error}`, messageType: 'error' }));
             console.error('Error fetching notes:', error);
         }
     }

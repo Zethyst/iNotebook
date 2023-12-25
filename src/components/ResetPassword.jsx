@@ -5,9 +5,12 @@ import axios from "axios";
 import MailLockIcon from '@mui/icons-material/MailLock';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import VerifiedIcon from '@mui/icons-material/Verified';
+import { useDispatch } from "react-redux";
+import { showMessage } from "../store/reducers/notificationSlice";
 
 const baseURL = "https://inotebook-backend-platinum.onrender.com/api/auth";
 export default function ResetPassword(props) {
+  const dispatch = useDispatch();
   const location = useLocation(); //because location has the pathname (url) and search paramenter which has the query
   const navigate = useNavigate();
   const [invalidUser, setInvalidUser] = useState("");
@@ -21,15 +24,17 @@ export default function ResetPassword(props) {
 
   const { token, id } = queryString.parse(location.search); //extracting ?token and id from url
   const verifyToken = async () => {
+    dispatch(showMessage({ message: "Verifying Token", messageType: 'info' }));
     try {
       await axios(
         `${baseURL}/verify-token?token=${token}&id=${id}`
       );
      //?axios can be used in place of fetch and it uses get request
      setBusy(false);
-
+     dispatch(showMessage({ message: "Token verification successful!", messageType: 'success' }));
     } catch (error) {
         setBusy(false);
+        dispatch(showMessage({ message: 'An error occurred during token verification. Please try again.', messageType: 'error' }));
       if (error?.response?.data) {
         const {data}=error.response;
 
@@ -62,6 +67,7 @@ export default function ResetPassword(props) {
     }
     try {
         setBusy(true);
+        dispatch(showMessage({ message: "Resetting...", messageType: 'info' }));
         const { data } = await axios.post(
           `${baseURL}/reset-password?token=${token}&id=${id}`,{password}
         );
@@ -70,11 +76,13 @@ export default function ResetPassword(props) {
 
        if (data.success) {
            navigate("/reset-password");
-            setSuccess(true);
+           dispatch(showMessage({ message: "Success", messageType: 'success' }));
+           setSuccess(true);
        }
   
       } catch (error) {
         setBusy(false);
+        dispatch(showMessage({ message: 'An error occurred during resetting password. Please try again.', messageType: 'error' }));
         if (error?.response?.data) {
           const {data}=error.response;
   

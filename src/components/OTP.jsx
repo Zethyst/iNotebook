@@ -2,12 +2,15 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import BarLoader from "./BarLoader";
+import { useDispatch } from "react-redux";
+import { showMessage } from "../store/reducers/notificationSlice";
 
 const inputs = Array(4).fill(""); // create a blank array of 4 index
 let newInputIndex = 0;
 const baseURL = "https://inotebook-backend-platinum.onrender.com/api/auth";
 
 export default function OTP(props) {
+  const dispatch = useDispatch();
   const inputRef = useRef(null);
   const resendRef =useRef();
   const navigate = useNavigate();
@@ -107,19 +110,20 @@ export default function OTP(props) {
         const json = await response.json();
         if (json.success) {
             CorrectOTP();
-            props.showAlert("E-mail verified successfully!", "success");
+            dispatch(showMessage({ message: "E-mail verified successfully!", messageType: 'success' }));
             setTimeout(() => {
                 navigate("/");
             }, 1200);
         } else {
-          props.showAlert(json.error, "danger");
+          dispatch(showMessage({ message: json.error, messageType: 'error' }));
+
         }
       } catch (error) {
-          props.showAlert("Error Occured", "danger");
+        dispatch(showMessage({ message: "Error Occured", messageType: 'error' }));
         }
         //   console.log("Entered OTP:", val);
     } else {
-      props.showAlert("Please enter all 4 digits!", "danger");
+      dispatch(showMessage({ message: "Please enter all 4 digits!", messageType: 'error' }));
       WrongOTP();
     }
   };
@@ -141,14 +145,14 @@ export default function OTP(props) {
                 `${baseURL}/resend`,{ email: props.email, ID: props.ID}
               );
               if (data.success) {
-                props.showAlert("E-mail sent successfully!", "success");
+                dispatch(showMessage({ message: "E-mail sent successfully!", messageType: 'success' }));
               } else {
-                props.showAlert(data.error, "danger");
+                dispatch(showMessage({ message: data.error, messageType: 'error' }));
               }
               setBusy(false);
         } catch (error) {
             setBusy(false);
-            props.showAlert("Error Occured", "danger");
+            dispatch(showMessage({ message: "Error Occured", messageType: 'error' }));
         }
   }
 

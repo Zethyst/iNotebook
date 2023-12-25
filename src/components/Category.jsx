@@ -9,10 +9,13 @@ import AdsClickIcon from '@mui/icons-material/AdsClick';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import FormatQuoteIcon from '@mui/icons-material/FormatQuote';
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome';
+import { useDispatch } from "react-redux";
+import { showMessage } from "../store/reducers/notificationSlice";
 
 function Category(props) {
 
   // const ref=useRef(null);
+  const dispatch = useDispatch();
   const category = useContext(categoryContext);
   const { selectedCategory, handleCategoryClick } = category;
 
@@ -20,6 +23,10 @@ function Category(props) {
   //   props.parentRef.current.classList.toggle("sidebar");
   //   // props.handleSideBarClick();
   // }
+
+  const handleClick = ()=>{
+    dispatch(showMessage({ message: "This feature is currently in development", messageType: 'warning' }));
+  }
 
   return (
     <div className={`flex ${!props.isSidebarOpen? "sidebar": ""}`}  style={{transition: "all .7s ease"}}>
@@ -36,7 +43,7 @@ function Category(props) {
           <li className={`flex gap-3 cursor-pointer rounded-2xl category p-2 px-3 transform hover:translate-x-2 transition-transform ease-in duration-200 text-gray-600 hover:text-gray-800 ${selectedCategory === "Quote" ? 'bg-gray-200' : ''} `} onClick={() => handleCategoryClick("Quote")}><FormatQuoteIcon /> <p>Quote</p></li>
         
         </ul>
-        <div className='flex absolute bottom-8 cursor-pointer' onClick={props.handleSideBarClick} style={{fontFamily:"'Source Sans', sans-serif"}}><AddCircleRoundedIcon/> <p className='md:ml-3 ml-1 text-sm md:translate-y-0 translate-y-1 md:text-base' >Add Category</p></div>
+        <div className='flex absolute bottom-8 cursor-pointer' onClick={handleClick} style={{fontFamily:"'Source Sans', sans-serif"}}><AddCircleRoundedIcon/> <p className='md:ml-3 ml-1 text-sm md:translate-y-0 translate-y-1 md:text-base' >Add Category</p></div>
       </aside>
 
     </div>

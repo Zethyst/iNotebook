@@ -1,5 +1,7 @@
 import React, { useState} from "react";
 import Spinner from './Spinner';
+import { useDispatch } from "react-redux";
+import { showMessage } from "../store/reducers/notificationSlice";
 
 import LockPersonRoundedIcon from '@mui/icons-material/LockPersonRounded';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
@@ -8,6 +10,7 @@ const baseURL = "https://inotebook-backend-platinum.onrender.com/api/auth";
 // const baseURL = "http://localhost:5000/api/auth";
 
 export default function ForgotPassword(props) {
+    const dispatch = useDispatch();
     const [email, setEmail] = useState('');
     const [busy, setBusy] = useState(false);
 
@@ -31,13 +34,14 @@ export default function ForgotPassword(props) {
             setBusy(false);
             if (json.success) {
                 //!Redirect
-                props.showAlert("E-mail sent successfully!", "success");
+                dispatch(showMessage({ message: "E-mail sent successfully!", messageType: 'success' }));
+
             }
             else {
-                props.showAlert(json.error, "danger");
+                dispatch(showMessage({ message: json.error, messageType: 'error' }));
             }
         } catch (error) {
-            props.showAlert("Error Occured", "danger");
+            dispatch(showMessage({ message: "Error Occured", messageType: 'error' }));
         }
 
     }

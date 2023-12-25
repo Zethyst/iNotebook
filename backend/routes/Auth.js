@@ -220,6 +220,8 @@ router.post(
             "The password you entered is incorrect. Give it another shot or reset your password.",
         });
       }
+
+      // Generate JWT token here 
       const payload = {
         user: {
           id: user.id,

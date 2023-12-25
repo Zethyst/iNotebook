@@ -56,8 +56,8 @@ const Home = (props) => {
           </div>
           {/* // 30% width for the AddNoteModal & Notes Component */}
           <div className={`w-${notes ? '[22rem]' : '[20rem]'} md:w-${notes? '[28rem]' : '[27rem]'} relative`} >
-            <AddNoteModal closeModal={closeModal} showAlert={props.showAlert} />
-            <Notes isSidebarOpen={isSidebarOpen} closeModal={closeModal} openModal={openModal} showAlert={props.showAlert} searchKeyword={props.searchKeyword} />
+            <AddNoteModal closeModal={closeModal} />
+            <Notes isSidebarOpen={isSidebarOpen} closeModal={closeModal} openModal={openModal} searchKeyword={props.searchKeyword} />
           </div>
         {/* 50% width for the Guidelines Component */}
           <div className={`md:w-2/5 hidden md:block`} >
