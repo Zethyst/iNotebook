@@ -35,7 +35,6 @@ export default function ForgotPassword(props) {
             if (json.success) {
                 //!Redirect
                 dispatch(showMessage({ message: "E-mail sent successfully!", messageType: 'success' }));
-
             }
             else {
                 dispatch(showMessage({ message: json.error, messageType: 'error' }));

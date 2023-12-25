@@ -360,7 +360,7 @@ router.post("/forgot-password", async (req, res) => {
     const token = await ResetToken.findOne({ owner: user._id });
     if (token)
       return res.status(401).json({
-        error: "Only after 1 hour, you can request for another token!",
+        error: "Only after 1 hour, you can request for another email. Please have patience and be assured the email will arrive shortly",
       });
 
     const passwordToken = await createRandomBytes();
