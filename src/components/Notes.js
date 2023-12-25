@@ -187,7 +187,7 @@ const Notes = (props) => {
               </div>
               <div className="modal-footer border-none pt-0 pb-3">
                 {/* <button type="button" className="w-24 h-9 rounded-lg bg-gray-600 hover:bg-gray-700 text-white" data-bs-dismiss="modal">Close</button> */}
-                <button
+                <button disabled={note.etitle.length < 3 && note.edescription < 3} 
                   type="submit"
                   onClick={handleClick}
                   className="w-full h-9 rounded-lg  bg-[#472523] hover:bg-[#321918] text-white"
@@ -242,7 +242,7 @@ const Notes = (props) => {
             </button>}
           </>
         ) : (
-          <div className={`container ${props.isSidebarOpen?"translate-x-10":""}`}>
+          <div className={`container ${props.isSidebarOpen?"translate-x-12":""}`}>
             <h1 className=" mb-3 font-sans -translate-x-24 font-bold text-3xl">
               Notes
             </h1>

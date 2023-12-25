@@ -19,9 +19,9 @@ const NoteItem = (props) => {
     const [goldMode, setGoldMode] = useState(false);
 
     function capitalize(sentence) {
-      return sentence
+      return (sentence ?? '')
         .split(' ')
-        .map(word => (word ? word.charAt(0).toUpperCase() + word.slice(1) : ''))
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
         .join(' ');
     }
     

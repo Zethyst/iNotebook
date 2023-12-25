@@ -19,10 +19,12 @@ const AddNoteModal = ({ closeModal }) => {
         if (note.tag === '') {
             note.tag = 'General';
         }
+        if (note.title === '') {
+            note.title = 'No Title...';
+        }
         addNote(note.title, note.description, note.tag);
         setNote({ title: '', description: '', tag: '' });
 
-        handleNotify("Your thoughts have been saved");
         closeModal();
     };
 
@@ -42,7 +44,7 @@ const AddNoteModal = ({ closeModal }) => {
                         <div className='modal-body'>
                             <div className='mb-3'>
                                 <label htmlFor='title' className='form-label font-medium'>Title</label>
-                                <input type='text' className='form-control outline-none gold-plate' id='title' name='title' style={{ fontFamily: "'Poppins',sans-serif" }} value={note.title} minLength={3} required placeholder='Give your note a headline...' onChange={handleChange} />
+                                <input type='text' className='form-control outline-none gold-plate' id='title' name='title' style={{ fontFamily: "'Poppins',sans-serif" }} value={note.title} minLength={3} placeholder='Give your note a headline...' onChange={handleChange} />
                             </div>
                             <div className='mb-3'>
                                 <label htmlFor='description' className='form-label font-medium'>Description</label>
@@ -55,7 +57,7 @@ const AddNoteModal = ({ closeModal }) => {
                         </div>
                         <div className='modal-footer border-none pt-0 pb-3'>
                             {/* <button type='button' className='w-24 h-9 rounded-lg bg-gray-600 hover:bg-gray-700 text-white' data-bs-dismiss='modal'>Close</button> */}
-                            <button type='submit' onClick={handleClick} className='w-full h-9 rounded-lg bg-[#472523] hover:bg-[#321918] text-white' style={{ fontFamily: "'Poppins',sans-serif" }} data-bs-dismiss='modal'>Add Note</button>
+                            <button disabled={note.title.length < 3 && note.description < 3} type='submit' onClick={handleClick} className='w-full h-9 rounded-lg bg-[#472523] hover:bg-[#321918] text-white' style={{ fontFamily: "'Poppins',sans-serif" }} data-bs-dismiss='modal'>Add Note</button>
                         </div>
                     </form>
                 </div>

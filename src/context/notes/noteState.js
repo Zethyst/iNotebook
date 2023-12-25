@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
 import noteContext from './noteContext'
+import { useDispatch } from "react-redux";
+import { showMessage } from "../../store/reducers/notificationSlice";
 
 const NoteState = (props) => {
+    const dispatch = useDispatch();
     let host = "https://inotebook-backend-platinum.onrender.com";
     // let s1 = {
     //     "name": "Akshat",
@@ -42,6 +45,7 @@ const NoteState = (props) => {
     const addNote = async (title, description, tag) => {
         //TODO: API CALL
         //*API CALL
+        try {
         const response = await fetch(`${host}/api/notes/addnote`, {
             method: "POST",
             headers: {
@@ -52,7 +56,12 @@ const NoteState = (props) => {
         });
 
         let note = await response.json();
-        setNotes(notes.concat(note)); //concat returns an array, push updates an array
+        setNotes(notes.concat(note)); //concat returns an new array, push just updates the array
+        dispatch(showMessage({ message:"Your thoughts have been saved", messageType: 'success' }));
+    } catch (error) {
+        dispatch(showMessage({ message:"Some Error Occured", messageType: 'error' }));
+        console.log(error);
+    }
     }
     //!Delete a Note
     const deleteNote = async (id) => {
@@ -65,14 +74,13 @@ const NoteState = (props) => {
                     "Auth-Token": localStorage.getItem("token")
                 }
             });
-            const json = await response.json();
-            console.log(json);
+            await response.json();
             const newNotes = notes.filter((note) => {
                 return note._id !== id
             })
             setNotes(newNotes); //concat returns an array, push updates an array
         } catch (error) {
-
+            console.log(error);
         }
     }
 

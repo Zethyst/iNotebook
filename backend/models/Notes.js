@@ -7,10 +7,11 @@ const NotesSchema=new mongoose.Schema({
     },
     title:{
         type:String,
-        required:true
+        default:"No Title..."
     },
     description:{
         type:String,
+        default:"No Description..."
     },
     tag:{
         type:String,
