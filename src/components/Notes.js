@@ -247,7 +247,7 @@ const Notes = (props) => {
             <h1 className=" mb-3 font-sans -translate-x-24 font-bold text-3xl">
               Notes
             </h1>
-            <div className="flex flex-col md:max-h-[450px] max-h-[700px]">
+            <div className="flex flex-col md:max-h-[450px] max-h-[600px]">
               <div
                 className={`${props.isSidebarOpen?"w-[12rem]":"w-[22rem]"} transition-all duration-500 ease-out md:w-[28rem] column -translate-x-9`}
                 style={{ overflowY: "scroll", overflowX: "clip" }}
