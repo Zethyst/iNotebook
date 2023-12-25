@@ -55,7 +55,7 @@ const AddNoteModal = ({ closeModal }) => {
                         </div>
                         <div className='modal-footer border-none pt-0 pb-3'>
                             {/* <button type='button' className='w-24 h-9 rounded-lg bg-gray-600 hover:bg-gray-700 text-white' data-bs-dismiss='modal'>Close</button> */}
-                            <button disabled={note.title.length < 3} type='submit' onClick={handleClick} className='w-full h-9 rounded-lg bg-[#472523] hover:bg-[#321918] text-white' style={{ fontFamily: "'Poppins',sans-serif" }} data-bs-dismiss='modal'>Add Note</button>
+                            <button type='submit' onClick={handleClick} className='w-full h-9 rounded-lg bg-[#472523] hover:bg-[#321918] text-white' style={{ fontFamily: "'Poppins',sans-serif" }} data-bs-dismiss='modal'>Add Note</button>
                         </div>
                     </form>
                 </div>

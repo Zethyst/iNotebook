@@ -18,10 +18,13 @@ const NoteItem = (props) => {
     const [isDeleteHovered, setIsDeleteHovered] = useState(false);
     const [goldMode, setGoldMode] = useState(false);
 
-    function capitalize(word) {
-        word = (word ?? '').toLowerCase();
-        return word.charAt(0).toUpperCase() + word.slice(1);
-      }
+    function capitalize(sentence) {
+      return sentence
+        .split(' ')
+        .map(word => (word ? word.charAt(0).toUpperCase() + word.slice(1) : ''))
+        .join(' ');
+    }
+    
       
 
     const getTagColorClass = (tag) => {
@@ -78,7 +81,7 @@ const NoteItem = (props) => {
                 </header>
 
                 <div className={`flex flex-col my-2 w-72 px-3`}>
-                    <p className="font-sans text-xl text-start leading-6 font-bold max-h-12 overflow-clip">{note.title}</p>
+                    <p className="font-sans text-xl text-start leading-6 font-bold max-h-12 overflow-clip">{note.title ? note.title: "No Title..."}</p>
                     <p className={`font-sans text-stone-500 font-medium text-sm mt-3 text-start w-64  max-h-20 overflow-auto`}>{note.description ? note.description : "No Description..."}</p>
                     {/* <p className='font-sans text-center text-xs my-1 w-48 h-5'><small style={{ color: 'grey' }}>Published At {d.toDateString()}, {d.toLocaleTimeString()}</small></p> */}
                 </div>
