@@ -38,7 +38,7 @@ const Navbar = (props) => {
 
     const handleLogout = () => {
         localStorage.removeItem('token');
-        navigate('/login');
+        navigate(mobileView?`/login-app`:`/login`);
     }
 
     const toggleNavbar = () => {
