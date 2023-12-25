@@ -16,6 +16,7 @@ const Home = (props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isSidebar2Open, setIsSidebar2Open] = useState(true);
+  const [startX, setStartX] = useState(null);
 
   const windowWidth = window.innerWidth;
 
@@ -44,9 +45,26 @@ const Home = (props) => {
     setIsModalOpen(false);
   };
 
+  const handleTouchStart = (e) => {
+    setStartX(e.touches[0].clientX);
+  };
+
+  const handleTouchEnd = (e) => {
+    if (startX && e.changedTouches.length) {
+      const endX = e.changedTouches[0].clientX;
+      const deltaX = endX - startX;
+
+      if (deltaX < -50) {
+        // Swipe left detected
+       handleSideBarClick();
+      }
+    }
+    setStartX(null);
+  };
+
   return (
     <>
-      <div className="flex" style={{transition: "all .9s ease"}}>
+      <div className="flex"  onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} style={{transition: "all .9s ease"}}>
         {/* 20% width for the Category component */}
           <div className={`md:w-${sidebarWidth} w-${sidebar2Width}`} style={{transition: "all .7s ease"}}>
             <Category handleSideBarClick={handleSideBarClick} isSidebarOpen={isSidebarOpen} parentRef={ref}/>
