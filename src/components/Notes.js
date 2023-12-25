@@ -249,7 +249,7 @@ const Notes = (props) => {
             </h1>
             <div className="flex flex-col md:max-h-[450px] max-h-[600px]">
               <div
-                className={`${props.isSidebarOpen?"w-[12rem]":"w-[22rem]"} transition-all duration-500 ease-out md:w-[28rem] column -translate-x-9`}
+                className={`${props.isSidebarOpen?"w-[8rem]":"w-[22rem]"} transition-all duration-500 ease-out md:w-[28rem] column -translate-x-9`}
                 style={{ overflowY: "scroll", overflowX: "clip" }}
               >
                 {/* <div key="conditional-message" className='container text-center'>

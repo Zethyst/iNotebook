@@ -175,7 +175,7 @@ const Login = (props) => {
                         {(isPWDEmpty && !isPWDFocused) || (props.credentials.password.length < 5 && isPWDFocused) && (
                             <ErrorMessage msg='Password must be greater than 5 characters long!' />)}
                         <Link to="/forgot-password" className='font-medium text-slate-500 hover:text-red-400'>Forgot your password?</Link>
-
+                        {busy && <BarLoader/>}
                         <button disabled={busy || (props.credentials.email.length<7 || props.credentials.password.length<5)} className='hover:bg-[#ff2b2b]' onClick={handleSignInClick}>Sign In</button>
 
                     </form >
