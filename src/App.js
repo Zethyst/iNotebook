@@ -30,7 +30,6 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [ID, setID] = useState('');
   const [credentials, setCredentials] = useState({ name: "", email: "", password: "" });
-  const [image, setImage]=useState("");
   const dispatch = useDispatch();
   const message = useSelector(selectMessage);
   const messageType = useSelector(selectMessageType);

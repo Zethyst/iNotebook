@@ -13,7 +13,7 @@ import { useDispatch } from "react-redux";
 import { showMessage } from "../store/reducers/notificationSlice";
 import Blank from "../img/blank-profile-picture.png";
 
-let host = "http://localhost:5000";
+let host = "https://inotebook-backend-platinum.onrender.com";
 
 function Category(props) {
   //!Get all details

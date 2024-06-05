@@ -93,7 +93,7 @@ const Login = (props) => {
         try {
             // console.log(props.credentials.name)
             setBusy(true);
-            const response = await fetch("http://localhost:5000/api/auth/createuser", {
+            const response = await fetch("https://inotebook-backend-platinum.onrender.com/api/auth/createuser", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -128,7 +128,6 @@ const Login = (props) => {
         reader.readAsDataURL(file);
         reader.onload = () => {
             setSelectedImage64(reader.result);
-            props.setImage(reader.result)
         };
         reader.onerror=(err)=>{
             console.log("Error:",err);

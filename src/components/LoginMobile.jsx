@@ -14,6 +14,8 @@ function LoginMobile(props) {
     const [isNameFocused, setNameFocus] = useState(false);
     const [isPWDEmpty, setIsPWDEmpty] = useState(false);
     const [isPWDFocused, setPWDFocus] = useState(false);
+    const [selectedImage64, setSelectedImage64] = useState("");
+    const [selectedImage, setSelectedImage] = useState("");
     const dispatch = useDispatch();
     let navigate = useNavigate(); //New version of useHistory
     // const [credentials, setcredentials] = useState({ name: "", email: "", password: "" });
@@ -96,7 +98,7 @@ function LoginMobile(props) {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({name:props.credentials.name, email: props.credentials.email, password: props.credentials.password })
+                body: JSON.stringify({name:props.credentials.name, email: props.credentials.email, password: props.credentials.password, image:selectedImage64  })
             });
             const json = await response.json();
             props.setID(json.ID);
@@ -118,6 +120,19 @@ function LoginMobile(props) {
             console.error('Error fetching notes:', error);
         }
     }
+    const handleImageChange = (event) => {
+        const file = event.target.files[0];
+        setSelectedImage(file);
+        // console.log(file);
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => {
+            setSelectedImage64(reader.result);
+        };
+        reader.onerror=(err)=>{
+            console.log("Error:",err);
+        }
+    };
   return (
     <div className='max-w-screen-sm flex justify-center items-center py-2  m-auto rounded-md'>
         <div ref={ref} className='Logincontainer-app w-full min-h-[620px] flex flex-col justify-center items-center rounded-xl overflow-hidden'>
@@ -161,6 +176,12 @@ function LoginMobile(props) {
                     <ErrorMessage msg='Password must be greater than 5 characters long!' />)}
                 <Link to="/forgot-password" className='font-medium text-slate-500 hover:text-red-400'>Forgot your password?</Link>
                 {busy && <BarLoader/>}
+                
+                <div className="image-input my-2">
+                                <input type="file" accept="image/*" id="imageInput"  onChange={handleImageChange}/>
+                                <label htmlFor="imageInput" className="image-button"><i className="far fa-image"></i> Choose image</label>
+                                {selectedImage?<p className='m-2 font-semibold'>{selectedImage.name}</p>:""}
+                </div>
                 <button disabled={busy || (props.credentials.email.length<7 || props.credentials.password.length<5)} className='hover:bg-[#ff2b2b]' onClick={handleSignInClick}>Sign In</button>
 
                 </form >
