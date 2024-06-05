@@ -159,7 +159,7 @@ function Category(props) {
             <p className="text-[#424242] font-bold text-lg md:text-xl">
               {details.name ? details.name : "Admin"}
             </p>
-            <p className="text-[#969596] font-semibold ">Admin</p>
+            <p className="text-[#969596] font-semibold ">{details.type ? details.type : "Admin"}</p>
           </div>
         </div>
       </aside>

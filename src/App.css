@@ -264,7 +264,7 @@ body {
 /* .nav-item:hover .nav-link{
 	color: rgba(255, 212, 116, 1) !important;
 } */
-.nav-item.active .nav-link {
+.nav-item.activeLink .nav-link {
   color: #898888 !important;
 }
 .navbar-brand {
@@ -282,7 +282,7 @@ body {
   color: initial;
 }
 
-.navbar-brand:active {
+.navbar-brand:activeLink {
   top: 2px;
   left: 1px;
 }
@@ -307,7 +307,7 @@ body {
   bottom: 0;
   opacity: 1;
 }
-.nav-item.active:hover:after {
+.nav-item.activeLink:hover:after {
   opacity: 0;
 }
 .nav-item {
@@ -797,4 +797,94 @@ button.ghost:hover {
  .searchBar{
   width: 19rem;
  }
+}
+/* Variables */
+:root {
+  --hover-black: #34A853;
+  --black: #34a853e2;
+  --bg: #eceffc;
+  --placeholder: #6b728c;
+}
+/* Dropdown */
+.dropdown {
+  width: 100%;
+  position: relative;
+  color: white;
+}
+
+.dropdown .label {
+  color: var(--black);
+  margin-bottom: 5px;
+}
+
+.dropdown .select {
+  cursor: pointer;
+  transition: 0.3s;
+  background-color: var(--black);
+  border-radius: 10px;
+  display: flex;
+  padding: 10px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dropdown .select .selected {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.dropdown .select .selected.placeholder {
+  color: var(--placeholder);
+}
+
+.dropdown .select .caret {
+  margin-left: 10px;
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 6px solid white;
+  transition: 0.3s;
+}
+
+.dropdown .select:hover {
+  background-color: var(--hover-black);
+}
+
+.dropdown .menu {
+  visibility: hidden;
+  background-color: var(--black);
+  border-radius: 5px;
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  top: 120%;
+  opacity: 0;
+  transition: visibility 0s, opacity 0.3s;
+  z-index: 1;
+}
+
+.dropdown .menu li {
+  cursor: pointer;
+  padding: 10px;
+}
+
+.dropdown .menu li:hover {
+  background-color: var(--hover-black);
+}
+
+.dropdown .menu-open {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Caret Rotate */
+.caret-rotate {
+  transform: rotate(180deg);
+}
+
+/* Active */
+.active {
+  background-color: var(--hover-black);
 }

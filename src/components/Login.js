@@ -15,6 +15,18 @@ const Login = (props) => {
     const [isPWDFocused, setPWDFocus] = useState(false);
     const [selectedImage64, setSelectedImage64] = useState("");
     const [selectedImage, setSelectedImage] = useState("");
+    const [isOpen, setIsOpen] = useState(false);
+    const [selectedOption, setSelectedOption] = useState('User Type');
+
+    const toggleMenu = () => {
+        setIsOpen(!isOpen);
+      };
+    
+      const selectOption = (option) => {
+        setSelectedOption(option);
+        setIsOpen(false);
+      };
+
     let navigate = useNavigate(); //New version of useHistory
     // const [credentials, setcredentials] = useState({ name: "", email: "", password: "" });
     const dispatch = useDispatch();
@@ -98,7 +110,13 @@ const Login = (props) => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({name:props.credentials.name, email: props.credentials.email, password: props.credentials.password, image:selectedImage64 })
+                body: JSON.stringify({
+                    name:props.credentials.name, 
+                    email: props.credentials.email, 
+                    password: props.credentials.password, 
+                    type:selectedOption,
+                    image:selectedImage64 
+                })
             });
             const json = await response.json();
             props.setID(json.ID);
@@ -141,16 +159,16 @@ const Login = (props) => {
 
                     <form action="/">
 
-                        <h1 className='text-4xl font-semibold  text-center'>Create Account</h1>
+                        <h1 className='text-4xl font-semibold  text-center my-3'>Create Account</h1>
 
-                        <div className="social-container">
+                        {/* <div className="social-container">
 
                             <a href="/" className="social"> <i className="fab fa-facebook-f"></i></a>
                             <a href="/" className="social"> <i className="fab fa-google-plus-g"></i></a>
                             <a href="/" className="social"> <i className="fab fa-linkedin-in"></i></a>
                         </div >
 
-                        <span className='font-medium text-slate-500'>or use your email for registration</span>
+                        <span className='font-medium text-slate-500'>or use your email for registration</span> */}
 
                         <input className={`${isNameEmpty && props.credentials.name.length < 3 ? 'invalidInput' : ''} loginInputExtended rounded-lg`} type="text" name="name" value={props.credentials.name} onChange={handleChange} onBlur={handleBlur} onFocus={handleFocus} minLength={5} required placeholder="Name" />
                         {(isNameEmpty && !isNameFocused) || (props.credentials.name.length < 3 && isNameFocused) && (
@@ -161,12 +179,25 @@ const Login = (props) => {
                             <ErrorMessage msg='Password must be greater than 5 characters long!' />)}
                         {busy && <BarLoader/>}
 
+                        <div className='dropdown my-2'>
+                                <div className='select' onClick={toggleMenu}>
+                                    <div className='selected'>{selectedOption}</div>
+                                    <div className={`caret ${isOpen ? 'caret-rotate' : ''}`}></div>
+                                </div>
+                                <ul className={`menu ${isOpen ? 'menu-open' : ''}`}>
+                                    <li onClick={() => selectOption('Free')}>Free</li>
+                                    <li onClick={() => selectOption('Developer')}>Developer</li>
+                                    <li onClick={() => selectOption('Premium')}>Premium</li>
+                                    <li onClick={() => selectOption('Business')}>Business</li>
+                                </ul>
+                        </div>
+
                         <div className="image-input my-2">
                                 <input type="file" accept="image/*" id="imageInput"  onChange={handleImageChange}/>
                                 <label htmlFor="imageInput" className="image-button"><i className="far fa-image"></i> Choose image</label>
                                 {selectedImage?<p className='m-2 font-semibold'>{selectedImage.name}</p>:""}
                         </div>
-                        <button disabled={ busy || (props.credentials.name.length<3 || props.credentials.password.length<5)} className='mt-2 hover:bg-[#ff2b2b]' onClick={handleSignUpClick}>Sign Up</button>
+                        <button disabled={ busy || (props.credentials.name.length<3 || props.credentials.password.length<5)} className='mt-3 hover:bg-[#ff2b2b]' onClick={handleSignUpClick}>Sign Up</button>
 
                     </form >
 
