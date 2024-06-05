@@ -74,8 +74,8 @@ function App() {
             <Routes>
               <Route exact path="/" element={<Home searchKeyword={searchQuery} credentials={credentials}/>} />
               <Route exact path="/about" element={<About />} />
-              <Route exact path="/login" element={<Login setID={setID} credentials={credentials} setCredentials={setCredentials} setImage={setImage} />} />
-              <Route exact path="/login-app" element={<LoginMobile setID={setID} credentials={credentials} setCredentials={setCredentials} setImage={setImage} />} />
+              <Route exact path="/login" element={<Login setID={setID} credentials={credentials} setCredentials={setCredentials} />} />
+              <Route exact path="/login-app" element={<LoginMobile setID={setID} credentials={credentials} setCredentials={setCredentials} />} />
               <Route exact path="/forgot-password" element={<ForgotPassword/>} />
               <Route exact path="/reset-password" element={<ResetPassword/>} />
               <Route exact path="/verify-email" element={<OTP ID={ID} email={credentials.email}/>} />

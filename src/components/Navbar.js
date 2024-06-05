@@ -91,11 +91,11 @@ const Navbar = (props) => {
                                         </div>
                                     </ul>
                                 {!localStorage.getItem('token') ? <Link to={mobileView?`/login-app`:`/login`}>
-
-                                    <div className={`button ${mobileView? isNavOpen?"":"hidden":""}`}><div className="button-layer"></div>
+                                    
+                                    <div className={`button ${mobileView? isNavOpen?"":"hidden":""} md:-right-40`}><div className="button-layer"></div>
                                     <button className='btn  text-center text-sm font-bold rounded-3xl  mr-10 h-12 w-32  text-slate-800' >Login / Register</button> </div></Link> :
                                    
-                                   <div className={`button ${mobileView? isNavOpen?"":"hidden":""}`}><div className="button-layer"></div>
+                                   <div className={`button ${mobileView? isNavOpen?"":"hidden":""}  md:-right-40`}><div className="button-layer"></div>
                                         <button onClick={handleLogout} className='btn  text-center text-sm font-bold rounded-3xl  mr-10 h-12 w-24  text-slate-800' style={{ transform: "translate(0px)" }}>Sign Out</button>
                                     </div>
                                 }

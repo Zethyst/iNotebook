@@ -76,7 +76,7 @@ function Category(props) {
       style={{ transition: "all .7s ease" }}
     >
       <aside
-        className={`p-4  -translate-y-1  opacity-100 bg-[white] md:w-[248px]  relative z-20`}
+        className={`p-4  -translate-y-1  opacity-100 bg-[white] md:w-[255px]  relative z-20`}
         style={{
           transition: "transform 0.9s ease",
           boxShadow:
