@@ -12,9 +12,11 @@ const port = process.env.PORT || 5000
 
 
 app.use(cors())
-app.use(express.json())
+// app.use(express.json())
+var bodyParser = require('body-parser');
+app.use(bodyParser.json({limit: "50mb"})); //!Necessary to be able to upload large images
+app.use(bodyParser.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
 connectToMongo();
-
 //! Available Routes
 // app.get('/', async (req, res) => {
 //     const userAgentInfo = getUserAgentInfo(req);

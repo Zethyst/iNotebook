@@ -66,10 +66,10 @@ const Home = (props) => {
     <>
       <div className="flex"  onTouchStart={handleTouchStart} onTouchEnd={handleTouchEnd} style={{transition: "all .9s ease"}}>
         {/* 20% width for the Category component */}
-          <div className={`md:w-${sidebarWidth} w-${sidebar2Width}`} style={{transition: "all .7s ease"}}>
-            <Category handleSideBarClick={handleSideBarClick} isSidebarOpen={isSidebarOpen} parentRef={ref}/>
+          <div className={`md:w-${sidebarWidth} w-${sidebar2Width} `} style={{transition: "all .7s ease"}}>
+            <Category handleSideBarClick={handleSideBarClick} credentials={props.credentials} isSidebarOpen={isSidebarOpen} isSidebar2Open={isSidebar2Open} parentRef={ref}/>
           </div>
-          <div  className='sidebtn relative translate-y-32 w-10 md:w-8 z-10 h-56 rounded-r-2xl cursor-pointer shadow-lg flex justify-center items-center ' onClick={handleSideBarClick} >
+          <div style={{transition: "all .7s ease"}}  className={`sidebtn translate-y-32 w-10 md:w-8 z-10 h-56 rounded-r-2xl cursor-pointer shadow-lg flex justify-center items-center`} onClick={handleSideBarClick} >
             <div className='h-10 w-1 rounded-lg bg-gray-600'></div>
           </div>
           {/* // 30% width for the AddNoteModal & Notes Component */}

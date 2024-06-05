@@ -552,7 +552,7 @@ button.ghost:hover {
   overflow: hidden;
   width: 768px;
   max-width: 100%;
-  min-height: 490px;
+  min-height: 550px;
   justify-content: center;
   align-items: center;
 }
@@ -757,7 +757,40 @@ button.ghost:hover {
 }
 
 .sidebar {
-  transform: translateX(-180px);
+  transform: translateX(-280px);
+}
+
+/* Image input */
+.image-input {
+  text-align: center;
+}
+.image-input input {
+  display: none;
+}
+.image-input label {
+  display: block;
+  color: #FFF;
+  background: #0d68fa;
+  padding: .4rem .9rem;
+  font-size: 115%;
+  cursor: pointer;
+  border-radius: 10px;
+}
+.image-input label i {
+  font-size: 125%;
+  margin-right: .3rem;
+}
+.image-input label:hover i {
+  animation: shake .35s;
+}
+.image-input img {
+  max-width: 175px;
+  display: none;
+}
+.image-input span {
+  display: none;
+  text-align: center;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 500px) {

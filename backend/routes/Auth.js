@@ -18,8 +18,20 @@ const nodemailer = require("nodemailer");
 const PasswordResetTemplate = require("../utils/passwordReset");
 const isResetPasswordValid = require("../Middlewares/isResetPasswordValid");
 const NewPasswordTemplate = require("../utils/newPassword");
+const rateLimit = require("express-rate-limit");
+
 
 //! .. for previous folder
+
+//? Creating a rate limiter middleware
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+  message: "Too many requests from this IP, please try again after 15 minutes",
+});
+
+//? Applying the rate limiter to all requests
+router.use(limiter);
 
 //whenever a user hits /api/auth/ endpoint, rest of the code goes from below
 
@@ -64,15 +76,16 @@ router.post(
           .json({ error: "Sorry, a user with this email already exists" });
       }
       //?creating hashed password + salt
-      let salt = await bcrypt.genSalt(10); //10 characters salt
+      // let salt = await bcrypt.genSalt(10); //10 characters salt
       //awaiting cuz ruk jao aur iski value leke jao
-      let secPass = await bcrypt.hash(req.body.password, salt);
+      let secPass = await bcrypt.hash(req.body.password, 10);
 
       //?creating a user from post request
       const user = await User.create({
         name: req.body.name,
         email: req.body.email,
         password: secPass,
+        image:req.body.image
       });
 
       let otp = generateOTP();
@@ -91,11 +104,11 @@ router.post(
         secure: true,
         auth: {
           user: "21052646@kiit.ac.in",
-          pass: "bpbnyvhjzsvugatm", //got the password from google account itself inside App Passwords
+          pass: "cprnljltrvkramlu", //got the password from google account itself inside App Passwords
         },
       });
-      const filePath = path.join(__dirname, "../utils/index.html");
-      const htmlContent = fs.readFileSync(filePath, "utf-8");
+      // const filePath = path.join(__dirname, "../utils/index.html");
+      // const htmlContent = fs.readFileSync(filePath, "utf-8");
 
       const result = await transporter.sendMail({
         from: '"✨ Akshat Jaiswal ✨" <21052646@kiit.ac.in>', // sender address
@@ -213,6 +226,8 @@ router.post(
             "This username doesn't exist. Double-check or sign up if you're new.",
         });
       }
+      console.log(password,user.password)
+      
       const passwordCompare = await bcrypt.compare(password, user.password);
       if (!passwordCompare) {
         return res.status(400).json({
@@ -245,7 +260,7 @@ router.post(
 //! Route 3: Get logged in user details using POST: /api/auth/getuser. Login Required
 router.post("/getuser", fetchuser, async (req, res) => {
   try {
-    let userID = req.user.id;
+    let userID = req.user.id; //ab kyuki maine fetchuser use kiya hua hai toh mere req.user me hoga logged in user  
     const user = await User.findById(userID).select("-password");
     res.json({ user });
   } catch (error) {
@@ -280,7 +295,7 @@ router.post("/verify-email", async (req, res) => {
       return res.status(404).json({ error: "Sorry, user not found!" });
 
     //verification by comparing the entered otp hash with stored otp hash value
-    const isMatched = await token.compareToken(otp);
+    const isMatched = token.compareToken(otp);
     if (!isMatched)
       return res.status(404).json({ error: "Please enter the correct OTP!" });
     user.verified = true;
@@ -300,7 +315,7 @@ router.post("/verify-email", async (req, res) => {
       secure: true,
       auth: {
         user: "21052646@kiit.ac.in",
-        pass: "bpbnyvhjzsvugatm", //got the password from google account itself inside App Passwords
+        pass: "unvhjmcnpiuafimo", //got the password from google account itself inside App Passwords
       },
     });
 
@@ -377,7 +392,7 @@ router.post("/forgot-password", async (req, res) => {
       secure: true,
       auth: {
         user: "21052646@kiit.ac.in",
-        pass: "bpbnyvhjzsvugatm", //got the password from google account itself inside App Passwords
+        pass: "unvhjmcnpiuafimo", //got the password from google account itself inside App Passwords
       },
     });
 
@@ -474,7 +489,7 @@ router.post("/reset-password", isResetPasswordValid, async (req, res) => {
       secure: true,
       auth: {
         user: "21052646@kiit.ac.in",
-        pass: "bpbnyvhjzsvugatm", //got the password from google account itself inside App Passwords
+        pass: "unvhjmcnpiuafimo", //got the password from google account itself inside App Passwords
       },
     });
 
@@ -539,7 +554,7 @@ router.post("/resend", async (req, res) => {
       secure: true,
       auth: {
         user: "21052646@kiit.ac.in",
-        pass: "bpbnyvhjzsvugatm", //got the password from google account itself inside App Passwords
+        pass: "unvhjmcnpiuafimo", //got the password from google account itself inside App Passwords
       },
     });
 

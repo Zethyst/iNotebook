@@ -15,7 +15,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { showMessage, clearMessage ,selectMessage, selectMessageType } from "./store/reducers/notificationSlice";
 
 
-//installing npm i concurrently because we want to run react server and nodejs server at the same time
+//installing npm i 'concurrently' package because we want to run react server and nodejs server at the same time
 //when deploying, we host nodejs application and react application differently
 
 import {
@@ -30,6 +30,7 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [ID, setID] = useState('');
   const [credentials, setCredentials] = useState({ name: "", email: "", password: "" });
+  const [image, setImage]=useState("");
   const dispatch = useDispatch();
   const message = useSelector(selectMessage);
   const messageType = useSelector(selectMessageType);
@@ -72,10 +73,10 @@ function App() {
             <div className='h-[82px]'></div>
             <ToastContainer/>
             <Routes>
-              <Route exact path="/" element={<Home searchKeyword={searchQuery}/>} />
+              <Route exact path="/" element={<Home searchKeyword={searchQuery} credentials={credentials}/>} />
               <Route exact path="/about" element={<About />} />
-              <Route exact path="/login" element={<Login setID={setID} credentials={credentials} setCredentials={setCredentials} />} />
-              <Route exact path="/login-app" element={<LoginMobile setID={setID} credentials={credentials} setCredentials={setCredentials} />} />
+              <Route exact path="/login" element={<Login setID={setID} credentials={credentials} setCredentials={setCredentials} setImage={setImage} />} />
+              <Route exact path="/login-app" element={<LoginMobile setID={setID} credentials={credentials} setCredentials={setCredentials} setImage={setImage} />} />
               <Route exact path="/forgot-password" element={<ForgotPassword/>} />
               <Route exact path="/reset-password" element={<ResetPassword/>} />
               <Route exact path="/verify-email" element={<OTP ID={ID} email={credentials.email}/>} />

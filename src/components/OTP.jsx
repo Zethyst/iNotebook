@@ -7,7 +7,7 @@ import { showMessage } from "../store/reducers/notificationSlice";
 
 const inputs = Array(4).fill(""); // create a blank array of 4 index
 let newInputIndex = 0;
-const baseURL = "https://inotebook-backend-platinum.onrender.com/api/auth";
+const baseURL = "http://localhost:5000/api/auth";
 
 export default function OTP(props) {
   const dispatch = useDispatch();

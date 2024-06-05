@@ -202,7 +202,7 @@ const Notes = (props) => {
       </div>
 
       <div className=" text-center ">
-        {filteredNotes.length === 0 || !localStorage.getItem("token") ? (
+        {filteredNotes?.length === 0 || !localStorage.getItem("token") ? (
           <>
             <p className="my-3 font-sans font-bold text-2xl">Your Notes</p>
             <i

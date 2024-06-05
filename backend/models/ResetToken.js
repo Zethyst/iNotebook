@@ -28,7 +28,7 @@ ResetTokenSchema.pre("save", async function (next) {
 });
 
 ResetTokenSchema.methods.compareToken= async function (token) {
-    const result = await bcrypt.compareSync(token,this.token); //this.token is inside database
+    const result = bcrypt.compareSync(token,this.token); //this.token is inside database
     return result;
 }
 module.exports = mongoose.model("ResetToken", ResetTokenSchema);
